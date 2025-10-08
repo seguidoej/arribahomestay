@@ -14,18 +14,53 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 25%, #20B2AA 50%, #00CED1 75%, #87CEEB 100%);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: oceanWave 20s ease infinite;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        @keyframes gradientShift {
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(135, 206, 235, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(70, 130, 180, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(32, 178, 170, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 60% 70%, rgba(0, 206, 209, 0.2) 0%, transparent 50%);
+            z-index: 1;
+            animation: oceanBubbles 25s ease-in-out infinite;
+        }
+
+        @keyframes oceanWave {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        @keyframes oceanBubbles {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            25% { 
+                transform: translateY(-20px) rotate(1deg);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateY(-10px) rotate(-1deg);
+                opacity: 0.9;
+            }
+            75% { 
+                transform: translateY(-15px) rotate(0.5deg);
+                opacity: 0.8;
+            }
         }
 
         /* Floating particles background */
@@ -41,24 +76,31 @@
 
         .particle {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(135, 206, 235, 0.2) 50%, transparent 100%);
             border-radius: 50%;
-            animation: float 20s infinite linear;
+            animation: bubbleFloat 25s infinite linear;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        @keyframes float {
+        @keyframes bubbleFloat {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
                 opacity: 0;
             }
             10% {
+                opacity: 0.8;
+                transform: translateY(90vh) rotate(36deg) scale(0.7);
+            }
+            50% {
                 opacity: 1;
+                transform: translateY(50vh) rotate(180deg) scale(1);
             }
             90% {
-                opacity: 1;
+                opacity: 0.8;
+                transform: translateY(10vh) rotate(324deg) scale(0.8);
             }
             100% {
-                transform: translateY(-100px) rotate(360deg);
+                transform: translateY(-100px) rotate(360deg) scale(0.3);
                 opacity: 0;
             }
         }
@@ -347,7 +389,7 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
         }
 
@@ -533,38 +575,38 @@
                     <div class="contact-label">Location</div>
                     <div class="contact-value">Purok 1 Malinao<br>General Luna, Siargao</div>
                 </div>
-                <div class="contact-item">
-                    <span class="contact-icon">💰</span>
-                    <div class="contact-label">Pricing</div>
-                    <div class="contact-value">₱3,300/night<br>₱300/extra bed</div>
-                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Create floating particles
+        // Create ocean bubbles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 80;
+            const particleCount = 60;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // Random size between 2px and 8px
-                const size = Math.random() * 6 + 2;
+                // Random size between 3px and 12px for more realistic bubbles
+                const size = Math.random() * 9 + 3;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
                 // Random horizontal position
                 particle.style.left = Math.random() * 100 + '%';
                 
-                // Random animation delay
-                particle.style.animationDelay = Math.random() * 20 + 's';
+                // Random animation delay for natural bubble timing
+                particle.style.animationDelay = Math.random() * 25 + 's';
                 
-                // Random animation duration
-                particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                // Random animation duration for varied bubble speeds
+                particle.style.animationDuration = (Math.random() * 20 + 20) + 's';
+                
+                // Add some bubbles with different opacity for depth
+                if (Math.random() > 0.7) {
+                    particle.style.opacity = '0.6';
+                }
                 
                 particlesContainer.appendChild(particle);
             }
