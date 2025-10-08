@@ -8,6 +8,18 @@
   ],
   "routes": [
     {
+      "src": "/logo/(.*)",
+      "dest": "/logo/$1"
+    },
+    {
+      "src": "/hero/(.*)",
+      "dest": "/hero/$1"
+    },
+    {
+      "src": "/gallery/(.*)",
+      "dest": "/gallery/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
