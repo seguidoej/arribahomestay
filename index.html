@@ -1807,41 +1807,46 @@
             });
         });
 
-        // Enhanced smooth scrolling for anchor links
+        // Enhanced smooth scrolling for anchor links only
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
                 const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
                 
-                if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 70; // Account for navbar height
+                // Only prevent default and smooth scroll for anchor links (starting with #)
+                if (targetId && targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(targetId);
                     
-                    // Enhanced smooth scrolling with easing
-                    const startPosition = window.pageYOffset;
-                    const distance = offsetTop - startPosition;
-                    const duration = 1000; // 1 second for super smooth transition
-                    let start = null;
-                    
-                    function easeInOutCubic(t) {
-                        return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                    }
-                    
-                    function animation(currentTime) {
-                        if (start === null) start = currentTime;
-                        const timeElapsed = currentTime - start;
-                        const progress = Math.min(timeElapsed / duration, 1);
-                        const ease = easeInOutCubic(progress);
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - 70; // Account for navbar height
                         
-                        window.scrollTo(0, startPosition + distance * ease);
+                        // Enhanced smooth scrolling with easing
+                        const startPosition = window.pageYOffset;
+                        const distance = offsetTop - startPosition;
+                        const duration = 1000; // 1 second for super smooth transition
+                        let start = null;
                         
-                        if (timeElapsed < duration) {
-                            requestAnimationFrame(animation);
+                        function easeInOutCubic(t) {
+                            return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
                         }
+                        
+                        function animation(currentTime) {
+                            if (start === null) start = currentTime;
+                            const timeElapsed = currentTime - start;
+                            const progress = Math.min(timeElapsed / duration, 1);
+                            const ease = easeInOutCubic(progress);
+                            
+                            window.scrollTo(0, startPosition + distance * ease);
+                            
+                            if (timeElapsed < duration) {
+                                requestAnimationFrame(animation);
+                            }
+                        }
+                        
+                        requestAnimationFrame(animation);
                     }
-                    
-                    requestAnimationFrame(animation);
                 }
+                // For non-anchor links (like booking.html), let the browser handle navigation normally
             });
         });
 
