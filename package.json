@@ -1,0 +1,13 @@
+{
+  "name": "arriba-homestay",
+  "version": "1.0.0",
+  "description": "Modern website for Arriba Homestay in Siargao Islands",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "echo 'Static site - serve index.html'"
+  },
+  "keywords": ["homestay", "siargao", "philippines", "travel"],
+  "author": "Arriba Homestay",
+  "license": "MIT"
+}
