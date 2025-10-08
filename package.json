@@ -9,5 +9,6 @@
   },
   "keywords": ["homestay", "siargao", "philippines", "travel"],
   "author": "Arriba Homestay",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module"
 }
