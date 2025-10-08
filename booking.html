@@ -611,7 +611,7 @@
                 <label class="form-label">Special Requests or Message</label>
                 <textarea class="form-textarea" placeholder="Tell us about your preferences, special occasions, or any questions you have..."></textarea>
             </div>
-            <button type="submit" class="booking-btn">BOOK</button>
+            <button type="button" class="booking-btn" onclick="handleBooking()">BOOK</button>
         </form>
 
         <div class="contact-info">
@@ -682,44 +682,31 @@
         // Initialize particles when page loads
         window.addEventListener('load', createParticles);
 
-        // Form submission - simplified approach
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('bookingForm');
-            const button = document.querySelector('.booking-btn');
+        // Simple, direct button click handler
+        function handleBooking() {
+            console.log('Booking function called!');
             
-            if (!form || !button) {
-                console.error('Form or button not found!');
+            // Get form data
+            const name = document.querySelector('input[type="text"]').value;
+            const email = document.querySelector('input[type="email"]').value;
+            const phone = document.querySelector('input[type="tel"]').value;
+            const checkIn = document.querySelector('input[type="date"]').value;
+            const checkOut = document.querySelector('input[type="date"]:nth-of-type(2)').value;
+            const guests = document.querySelector('select').value;
+            const message = document.querySelector('textarea').value;
+            
+            console.log('Form data:', {name, email, phone, checkIn, checkOut, guests, message});
+            
+            // Check if required fields are filled
+            if (!name || !email || !phone || !checkIn || !checkOut || !guests) {
+                alert('Please fill in all required fields.');
                 return;
             }
             
-            console.log('Form and button found, setting up event listeners...');
+            console.log('All fields filled, proceeding...');
             
-            // Button click handler
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                console.log('BOOK button clicked!');
-                
-                // Get form data
-                const name = form.querySelector('input[type="text"]').value;
-                const email = form.querySelector('input[type="email"]').value;
-                const phone = form.querySelector('input[type="tel"]').value;
-                const checkIn = form.querySelector('input[type="date"]').value;
-                const checkOut = form.querySelector('input[type="date"]:nth-of-type(2)').value;
-                const guests = form.querySelector('select').value;
-                const message = form.querySelector('textarea').value;
-                
-                console.log('Form data:', {name, email, phone, checkIn, checkOut, guests, message});
-                
-                // Check if required fields are filled
-                if (!name || !email || !phone || !checkIn || !checkOut || !guests) {
-                    alert('Please fill in all required fields.');
-                    return;
-                }
-                
-                console.log('All fields filled, proceeding...');
-                
-                // Create WhatsApp message
-                const whatsappMessage = `🏝️ *ARRIBA HOMESTAY BOOKING REQUEST* 🏝️
+            // Create WhatsApp message
+            const whatsappMessage = `🏝️ *ARRIBA HOMESTAY BOOKING REQUEST* 🏝️
 
 👤 *Name:* ${name}
 📧 *Email:* ${email}
@@ -734,15 +721,38 @@
 
 Please confirm availability and provide booking details. Thank you!`;
 
-                console.log('Opening WhatsApp...');
-                
-                // Open WhatsApp
-                const whatsappUrl = `https://wa.me/639190027790?text=${encodeURIComponent(whatsappMessage)}`;
-                window.open(whatsappUrl, '_blank');
-                
-                // Show success modal
-                showSuccessModal();
-            });
+            console.log('Opening WhatsApp...');
+            
+            // Open WhatsApp
+            const whatsappUrl = `https://wa.me/639190027790?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Show success modal
+            showSuccessModal();
+        }
+
+        // Multiple ways to attach the event
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up booking handler...');
+            
+            const button = document.querySelector('.booking-btn');
+            if (button) {
+                console.log('Button found, attaching click handler...');
+                button.addEventListener('click', handleBooking);
+                button.onclick = handleBooking; // Backup method
+            } else {
+                console.error('Button not found!');
+            }
+        });
+
+        // Also try when window loads
+        window.addEventListener('load', function() {
+            console.log('Window loaded, setting up booking handler...');
+            const button = document.querySelector('.booking-btn');
+            if (button) {
+                button.addEventListener('click', handleBooking);
+                button.onclick = handleBooking;
+            }
         });
 
         // Success modal functions
