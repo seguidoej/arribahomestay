@@ -686,8 +686,9 @@
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            console.log('Form submitted!'); // Debug log
+            
             // Get form data
-            const formData = new FormData(this);
             const name = this.querySelector('input[type="text"]').value;
             const email = this.querySelector('input[type="email"]').value;
             const phone = this.querySelector('input[type="tel"]').value;
@@ -695,6 +696,14 @@
             const checkOut = this.querySelector('input[type="date"]:nth-of-type(2)').value;
             const guests = this.querySelector('select').value;
             const message = this.querySelector('textarea').value;
+            
+            // Check if required fields are filled
+            if (!name || !email || !phone || !checkIn || !checkOut || !guests) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            console.log('All fields filled, proceeding...'); // Debug log
             
             // Create WhatsApp message
             const whatsappMessage = `🏝️ *ARRIBA HOMESTAY BOOKING REQUEST* 🏝️
@@ -712,6 +721,8 @@
 
 Please confirm availability and provide booking details. Thank you!`;
 
+            console.log('Opening WhatsApp...'); // Debug log
+            
             // Open WhatsApp
             const whatsappUrl = `https://wa.me/639190027790?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank');
@@ -732,6 +743,12 @@ Please confirm availability and provide booking details. Thank you!`;
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+
+        // Backup button click handler
+        document.querySelector('.booking-btn').addEventListener('click', function(e) {
+            console.log('Button clicked!'); // Debug log
+            // Let the form submission handle it
+        });
 
         // Add smooth scrolling for any anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
