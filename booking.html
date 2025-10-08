@@ -682,31 +682,44 @@
         // Initialize particles when page loads
         window.addEventListener('load', createParticles);
 
-        // Form submission
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Form submission - simplified approach
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('bookingForm');
+            const button = document.querySelector('.booking-btn');
             
-            console.log('Form submitted!'); // Debug log
-            
-            // Get form data
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const phone = this.querySelector('input[type="tel"]').value;
-            const checkIn = this.querySelector('input[type="date"]').value;
-            const checkOut = this.querySelector('input[type="date"]:nth-of-type(2)').value;
-            const guests = this.querySelector('select').value;
-            const message = this.querySelector('textarea').value;
-            
-            // Check if required fields are filled
-            if (!name || !email || !phone || !checkIn || !checkOut || !guests) {
-                alert('Please fill in all required fields.');
+            if (!form || !button) {
+                console.error('Form or button not found!');
                 return;
             }
             
-            console.log('All fields filled, proceeding...'); // Debug log
+            console.log('Form and button found, setting up event listeners...');
             
-            // Create WhatsApp message
-            const whatsappMessage = `🏝️ *ARRIBA HOMESTAY BOOKING REQUEST* 🏝️
+            // Button click handler
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('BOOK button clicked!');
+                
+                // Get form data
+                const name = form.querySelector('input[type="text"]').value;
+                const email = form.querySelector('input[type="email"]').value;
+                const phone = form.querySelector('input[type="tel"]').value;
+                const checkIn = form.querySelector('input[type="date"]').value;
+                const checkOut = form.querySelector('input[type="date"]:nth-of-type(2)').value;
+                const guests = form.querySelector('select').value;
+                const message = form.querySelector('textarea').value;
+                
+                console.log('Form data:', {name, email, phone, checkIn, checkOut, guests, message});
+                
+                // Check if required fields are filled
+                if (!name || !email || !phone || !checkIn || !checkOut || !guests) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                console.log('All fields filled, proceeding...');
+                
+                // Create WhatsApp message
+                const whatsappMessage = `🏝️ *ARRIBA HOMESTAY BOOKING REQUEST* 🏝️
 
 👤 *Name:* ${name}
 📧 *Email:* ${email}
@@ -721,14 +734,15 @@
 
 Please confirm availability and provide booking details. Thank you!`;
 
-            console.log('Opening WhatsApp...'); // Debug log
-            
-            // Open WhatsApp
-            const whatsappUrl = `https://wa.me/639190027790?text=${encodeURIComponent(whatsappMessage)}`;
-            window.open(whatsappUrl, '_blank');
-            
-            // Show success modal
-            showSuccessModal();
+                console.log('Opening WhatsApp...');
+                
+                // Open WhatsApp
+                const whatsappUrl = `https://wa.me/639190027790?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                // Show success modal
+                showSuccessModal();
+            });
         });
 
         // Success modal functions
@@ -743,12 +757,6 @@ Please confirm availability and provide booking details. Thank you!`;
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-
-        // Backup button click handler
-        document.querySelector('.booking-btn').addEventListener('click', function(e) {
-            console.log('Button clicked!'); // Debug log
-            // Let the form submission handle it
-        });
 
         // Add smooth scrolling for any anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
