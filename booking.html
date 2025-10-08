@@ -287,26 +287,25 @@
         .form-input, .form-select, .form-textarea {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid #ddd;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            color: white;
+            background: white;
+            color: #333;
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .form-input::placeholder, .form-textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: #999;
         }
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.2);
+            border-color: #4ecdc4;
+            background: white;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
         .form-textarea {
@@ -315,9 +314,7 @@
         }
 
         .booking-btn {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            background-size: 300% 300%;
-            animation: gradientMove 3s ease infinite;
+            background: #4ecdc4;
             color: white;
             padding: 18px 50px;
             border: none;
@@ -326,7 +323,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
@@ -335,34 +332,14 @@
             margin-top: 20px;
         }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         .booking-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: #45b7aa;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .booking-btn:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-
-        .booking-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .booking-btn:hover::before {
-            left: 100%;
+            transform: translateY(0);
         }
 
         /* Contact Info */
@@ -445,6 +422,86 @@
         .contact-value a:hover {
             color: #4ecdc4;
             text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+        }
+
+        /* Success Notification Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .success-modal.active {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            margin: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .success-modal.active .success-content {
+            transform: scale(1);
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out;
+        }
+
+        .success-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .success-btn {
+            background: #4ecdc4;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .success-btn:hover {
+            background: #45b7aa;
+            transform: translateY(-2px);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         /* Responsive Design */
@@ -554,7 +611,7 @@
                 <label class="form-label">Special Requests or Message</label>
                 <textarea class="form-textarea" placeholder="Tell us about your preferences, special occasions, or any questions you have..."></textarea>
             </div>
-            <button type="submit" class="booking-btn">Book Now - ₱3,300/night</button>
+            <button type="submit" class="booking-btn">BOOK</button>
         </form>
 
         <div class="contact-info">
@@ -576,6 +633,16 @@
                     <div class="contact-value">Purok 1 Malinao<br>General Luna, Siargao</div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h3 class="success-title">BOOK SENT SUCCESSFULLY</h3>
+            <p class="success-message">Wait for an hour to get a call or text from us. We'll confirm your booking details soon!</p>
+            <button class="success-btn" onclick="closeSuccessModal()">OK</button>
         </div>
     </div>
 
@@ -649,9 +716,22 @@ Please confirm availability and provide booking details. Thank you!`;
             const whatsappUrl = `https://wa.me/639190027790?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank');
             
-            // Show success message
-            alert('Booking request sent! You will be redirected to WhatsApp to complete your booking.');
+            // Show success modal
+            showSuccessModal();
         });
+
+        // Success modal functions
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
 
         // Add smooth scrolling for any anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
