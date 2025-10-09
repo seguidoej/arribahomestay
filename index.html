@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ARRIBA HOMESTAY - Beach Paradise</title>
     <link rel="icon" type="image/png" href="public/logo/logo.png">
     <style>
@@ -2379,15 +2379,52 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            /* Container and spacing adjustments */
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Hero section mobile */
+            .hero {
+                padding: 100px 20px 60px;
+                min-height: 70vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+
+            /* Weather widget mobile */
             .weather-widget {
-                top: 80px;
-                right: 15px;
-                padding: 15px;
-                font-size: 0.9rem;
+                top: 90px;
+                right: 20px;
+                padding: 12px;
+                font-size: 0.85rem;
+                max-width: 160px;
             }
 
             .weather-icon {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            .weather-temp {
+                font-size: 1.2rem;
+            }
+
+            /* Stats section mobile */
+            .stats-section {
+                padding: 60px 20px;
             }
 
             .stats-grid {
@@ -2395,8 +2432,92 @@
                 gap: 20px;
             }
 
+            .stat-item {
+                padding: 20px 15px;
+            }
+
             .stat-number {
+                font-size: 2.2rem;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+            }
+
+            /* Gallery mobile */
+            .gallery {
+                padding: 60px 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .gallery-item {
+                border-radius: 15px;
+            }
+
+            .gallery-image {
+                height: 200px;
+            }
+
+            .gallery-description {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            /* Amenities mobile */
+            .amenities {
+                padding: 60px 20px;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .amenity-item {
+                padding: 25px 20px;
+                min-height: 120px;
+            }
+
+            .amenity-icon {
                 font-size: 2.5rem;
+            }
+
+            .amenity-title {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+
+            .amenity-description {
+                font-size: 0.95rem;
+            }
+
+            /* Details mobile */
+            .details {
+                padding: 60px 20px;
+            }
+
+            .info-section, .map-section {
+                padding: 30px 20px;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .section-content {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            /* Availability mobile */
+            .availability-section {
+                padding: 60px 20px;
             }
 
             .availability-grid {
@@ -2405,49 +2526,122 @@
             }
 
             .quick-booking, .price-calculator {
-                padding: 20px;
+                padding: 25px 20px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-input, .form-select {
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+
+            /* Virtual tour mobile */
+            .virtual-tour-section {
+                padding: 60px 20px;
             }
 
             .tour-carousel {
                 max-width: 100%;
-                margin: 0 20px;
+                margin: 0;
             }
 
             .tour-item {
-                height: 300px;
+                height: 250px;
+                margin: 0 10px;
             }
 
             .tour-title {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
 
             .tour-desc {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
-            .search-container {
-                display: none;
-            }
-
-            .breadcrumbs {
-                top: 60px;
+            /* Attractions mobile */
+            .attractions-section {
+                padding: 60px 20px;
             }
 
             .attractions-carousel {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                gap: 15px;
+            }
+
+            .attraction-item {
+                height: 200px;
+            }
+
+            .attraction-title {
+                font-size: 1rem;
+            }
+
+            .attraction-desc {
+                font-size: 0.8rem;
+            }
+
+            /* Transport mobile */
+            .transport-section {
+                padding: 60px 20px;
             }
 
             .transport-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
 
+            .transport-item {
+                padding: 25px 20px;
+            }
+
+            .transport-icon {
+                font-size: 2.5rem;
+            }
+
+            /* Footer mobile */
+            .contact-footer {
+                padding: 60px 20px 30px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-section h3 {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+
+            .footer-section p, .footer-section li {
+                font-size: 0.95rem;
+            }
+
+            .social-links {
+                justify-content: center;
+                margin-top: 20px;
+            }
+
             .social-icon {
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
-                margin: 0 8px;
+                width: 45px;
+                height: 45px;
+                line-height: 45px;
+                margin: 0 10px;
+            }
+
+            /* Breadcrumbs mobile */
+            .breadcrumbs {
+                top: 70px;
+                left: 20px;
+                right: 20px;
+            }
+
+            .breadcrumb-nav {
+                font-size: 0.9rem;
             }
             .nav-menu {
                 position: fixed;
@@ -2541,34 +2735,112 @@
         }
 
         @media (max-width: 480px) {
-            .nav-container {
+            /* Extra small mobile devices */
+            .container {
                 padding: 0 15px;
             }
 
+            /* Navbar mobile */
+            .nav-container {
+                padding: 0 15px;
+                height: 60px;
+            }
+
             .logo {
-                font-size: 20px;
+                font-size: 18px;
+            }
+
+            .mobile-menu-toggle {
+                width: 30px;
+                height: 30px;
+            }
+
+            .hamburger {
+                height: 2px;
+            }
+
+            /* Hero section extra small */
+            .hero {
+                padding: 80px 15px 40px;
+                min-height: 60vh;
             }
 
             .hero h1 {
                 font-size: 2rem;
+                margin-bottom: 15px;
             }
 
             .hero p {
                 font-size: 1rem;
+                margin-bottom: 25px;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Weather widget extra small */
+            .weather-widget {
+                top: 70px;
+                right: 15px;
+                padding: 10px;
+                font-size: 0.8rem;
+                max-width: 140px;
+            }
+
+            .weather-icon {
+                font-size: 1.5rem;
+            }
+
+            .weather-temp {
+                font-size: 1rem;
+            }
+
+            /* Stats extra small */
+            .stats-section {
+                padding: 40px 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .stat-item {
+                padding: 15px 10px;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            /* Gallery extra small */
+            .gallery {
+                padding: 40px 15px;
             }
 
             .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
 
             .gallery-image {
-                height: 150px;
+                height: 180px;
             }
 
             .gallery-description {
-                padding: 10px;
-                font-size: 0.8rem;
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+
+            /* Amenities extra small */
+            .amenities {
+                padding: 40px 15px;
             }
 
             .amenities-grid {
@@ -2577,7 +2849,7 @@
             }
 
             .amenity-item {
-                padding: 20px 10px;
+                padding: 20px 15px;
                 min-height: 100px;
             }
 
@@ -2587,10 +2859,151 @@
 
             .amenity-title {
                 font-size: 1.1rem;
+                margin-bottom: 8px;
             }
 
             .amenity-description {
                 font-size: 0.9rem;
+            }
+
+            /* Details extra small */
+            .details {
+                padding: 40px 15px;
+            }
+
+            .info-section, .map-section {
+                padding: 25px 15px;
+                margin-bottom: 15px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+
+            .section-content {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            /* Availability extra small */
+            .availability-section {
+                padding: 40px 15px;
+            }
+
+            .quick-booking, .price-calculator {
+                padding: 20px 15px;
+            }
+
+            .form-input, .form-select {
+                padding: 10px 12px;
+                font-size: 0.95rem;
+            }
+
+            /* Virtual tour extra small */
+            .virtual-tour-section {
+                padding: 40px 15px;
+            }
+
+            .tour-item {
+                height: 200px;
+                margin: 0 5px;
+            }
+
+            .tour-title {
+                font-size: 1.1rem;
+            }
+
+            .tour-desc {
+                font-size: 0.8rem;
+            }
+
+            /* Attractions extra small */
+            .attractions-section {
+                padding: 40px 15px;
+            }
+
+            .attractions-carousel {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .attraction-item {
+                height: 180px;
+            }
+
+            .attraction-title {
+                font-size: 0.9rem;
+            }
+
+            .attraction-desc {
+                font-size: 0.75rem;
+            }
+
+            /* Transport extra small */
+            .transport-section {
+                padding: 40px 15px;
+            }
+
+            .transport-item {
+                padding: 20px 15px;
+            }
+
+            .transport-icon {
+                font-size: 2rem;
+            }
+
+            /* Footer extra small */
+            .contact-footer {
+                padding: 40px 15px 20px;
+            }
+
+            .footer-section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+
+            .footer-section p, .footer-section li {
+                font-size: 0.9rem;
+            }
+
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                margin: 0 8px;
+            }
+
+            /* Breadcrumbs extra small */
+            .breadcrumbs {
+                top: 60px;
+                left: 15px;
+                right: 15px;
+            }
+
+            .breadcrumb-nav {
+                font-size: 0.8rem;
+            }
+
+            /* Modal extra small */
+            .modal-content {
+                margin: 10px;
+                max-width: calc(100vw - 20px);
+                max-height: calc(100vh - 20px);
+            }
+
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .modal-close {
+                top: -30px;
+                right: -30px;
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
             }
 
             .details-info {
@@ -3264,7 +3677,7 @@
                             console.log('Scrolling to:', targetId, targetSection);
                             
                             // Custom smooth scroll with proper offset
-                            const navbarHeight = 70;
+                            const navbarHeight = window.innerWidth <= 480 ? 60 : 70;
                             const targetPosition = targetSection.offsetTop - navbarHeight;
                             const startPosition = window.pageYOffset;
                             const distance = targetPosition - startPosition;
