@@ -3633,77 +3633,77 @@
     <script>
         // Wait for DOM to be ready
         document.addEventListener('DOMContentLoaded', function() {
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
                 if (navbar) {
-                    if (window.scrollY > 50) {
-                        navbar.classList.add('scrolled');
-                    } else {
-                        navbar.classList.remove('scrolled');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
                     }
-                }
-            });
+            }
+        });
 
-            // Mobile menu toggle
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const navMenu = document.getElementById('nav-menu');
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
 
             if (mobileMenuToggle && navMenu) {
-                mobileMenuToggle.addEventListener('click', () => {
-                    mobileMenuToggle.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
             }
 
             // Smooth scrolling for navigation links
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const targetId = link.getAttribute('href');
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
                     
                     // Close mobile menu if open
                     if (mobileMenuToggle && navMenu) {
                         mobileMenuToggle.classList.remove('active');
                         navMenu.classList.remove('active');
                     }
+                
+                // Only prevent default and smooth scroll for anchor links (starting with #)
+                if (targetId && targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(targetId);
                     
-                    // Only prevent default and smooth scroll for anchor links (starting with #)
-                    if (targetId && targetId.startsWith('#')) {
-                        e.preventDefault();
-                        const targetSection = document.querySelector(targetId);
-                        
-                        if (targetSection) {
+                    if (targetSection) {
                             console.log('Scrolling to:', targetId, targetSection);
-                            
+                        
                             // Custom smooth scroll with proper offset
                             const navbarHeight = window.innerWidth <= 480 ? 60 : 70;
                             const targetPosition = targetSection.offsetTop - navbarHeight;
-                            const startPosition = window.pageYOffset;
+                        const startPosition = window.pageYOffset;
                             const distance = targetPosition - startPosition;
                             const duration = 1000; // 1 second
-                            let start = null;
-                            
-                            function easeInOutCubic(t) {
-                                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                            }
-                            
+                        let start = null;
+                        
+                        function easeInOutCubic(t) {
+                            return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                        }
+                        
                             function step(timestamp) {
                                 if (!start) start = timestamp;
                                 const progress = timestamp - start;
                                 const percentage = Math.min(progress / duration, 1);
                                 const ease = easeInOutCubic(percentage);
-                                
-                                window.scrollTo(0, startPosition + distance * ease);
-                                
+                            
+                            window.scrollTo(0, startPosition + distance * ease);
+                            
                                 if (progress < duration) {
                                     requestAnimationFrame(step);
-                                }
                             }
-                            
-                            requestAnimationFrame(step);
                         }
+                        
+                            requestAnimationFrame(step);
                     }
+                }
                     // For non-anchor links (like external links), let the browser handle navigation normally
                 });
             });
