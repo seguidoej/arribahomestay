@@ -134,11 +134,33 @@
             color: #2c3e50;
             text-decoration: none;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .logo:hover {
             transform: scale(1.05);
             color: #3498db;
+        }
+
+        .logo.scrolled {
+            transform: scale(0.9);
+            color: #3498db;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
         }
 
         .logo::before {
@@ -200,6 +222,377 @@
         .nav-link:hover {
             color: #3498db;
             transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .nav-link.active::before {
+            width: 100%;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 8px 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .search-box:focus-within {
+            border-color: #3498db;
+            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #2c3e50;
+            width: 200px;
+        }
+
+        .search-input::placeholder {
+            color: #7f8c8d;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: rgba(52, 152, 219, 0.1);
+            transform: scale(1.1);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-result-item:hover {
+            background: #f8f9fa;
+            color: #3498db;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            padding: 10px 0;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .breadcrumbs.visible {
+            transform: translateY(0);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .breadcrumb-item {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item:hover {
+            color: #2980b9;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 10px;
+            color: #bdc3c7;
+        }
+
+        .breadcrumb-current {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        /* Nearby Attractions Section */
+        .attractions-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 50%, #ddeeff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .attractions-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: waveMotion 20s ease-in-out infinite;
+        }
+
+        .attractions-carousel {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .attraction-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(46, 204, 113, 0.2)) border-box;
+        }
+
+        .attraction-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .attraction-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .attraction-item:hover .attraction-image {
+            transform: scale(1.1);
+        }
+
+        .attraction-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .attraction-item:hover .attraction-overlay {
+            opacity: 1;
+        }
+
+        .attraction-distance {
+            background: rgba(52, 152, 219, 0.9);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+
+        .attraction-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .attraction-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .attractions-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .attraction-btn {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .attraction-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Transport Section */
+        .transport-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transport-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(52, 152, 219, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(46, 204, 113, 0.06) 0%, transparent 50%);
+            animation: gentleFloat 25s ease-in-out infinite;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .transport-item {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(46, 204, 113, 0.2)) border-box;
+        }
+
+        .transport-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .transport-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .transport-item:hover .transport-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .transport-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .transport-item p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .transport-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .transport-time {
+            color: #3498db;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .transport-price {
+            color: #2ecc71;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
 
         /* Mobile Menu Toggle */
@@ -1908,23 +2301,54 @@
 
         .social-icon {
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #1877f2;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            margin: 0 8px;
+            margin: 0 10px;
             transition: all 0.3s ease;
             text-decoration: none;
             color: white;
             font-size: 1.2rem;
-            line-height: 40px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            line-height: 45px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
         }
 
-        .social-icon:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            background: #166fe5;
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .social-icon:hover::before {
+            transform: translateX(100%);
+        }
+
+        .social-icon.facebook {
+            background: linear-gradient(135deg, #1877f2, #42a5f5);
+        }
+
+        .social-icon.facebook:hover {
+            background: linear-gradient(135deg, #166fe5, #1976d2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(24, 119, 242, 0.4);
+        }
+
+        .social-icon.airbnb {
+            background: linear-gradient(135deg, #ff5a5f, #ff8a80);
+        }
+
+        .social-icon.airbnb:hover {
+            background: linear-gradient(135deg, #e53e3e, #fc8181);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 90, 95, 0.4);
         }
 
         .footer-bottom {
@@ -1982,6 +2406,31 @@
 
             .tour-desc {
                 font-size: 1rem;
+            }
+
+            .search-container {
+                display: none;
+            }
+
+            .breadcrumbs {
+                top: 60px;
+            }
+
+            .attractions-carousel {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .transport-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                margin: 0 8px;
             }
             .nav-menu {
                 position: fixed;
@@ -2161,11 +2610,33 @@
             }
 
             .social-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-                line-height: 50px;
-                margin: 0 10px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+                line-height: 45px;
+                margin: 0 8px;
+            }
+
+            .attractions-carousel {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .transport-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .attraction-image {
+                height: 200px;
+            }
+
+            .transport-item {
+                padding: 20px 15px;
+            }
+
+            .transport-icon {
+                font-size: 2.5rem;
             }
         }
 
@@ -2237,6 +2708,19 @@
                 </li>
             </ul>
 
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <button class="search-btn" id="searchBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+
             <div class="mobile-menu-toggle" id="mobile-menu-toggle">
                 <span class="hamburger"></span>
                 <span class="hamburger"></span>
@@ -2244,6 +2728,17 @@
             </div>
         </div>
     </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs" id="breadcrumbs">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="#home" class="breadcrumb-item">Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <span class="breadcrumb-current" id="breadcrumbCurrent">Welcome</span>
+            </nav>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero parallax-element" id="home">
@@ -2565,6 +3060,111 @@
         </div>
     </section>
 
+    <!-- Nearby Attractions Section -->
+    <section class="attractions-section">
+        <div class="container">
+            <h2 class="section-title">🏝️ Nearby Attractions</h2>
+            <p class="section-subtitle">Discover the best of Siargao Island</p>
+            
+            <div class="attractions-carousel">
+                <div class="attraction-item">
+                    <div class="attraction-image" style="background-image: url('public/gallery/1.jpg');">
+                        <div class="attraction-overlay">
+                            <div class="attraction-distance">2.5 km</div>
+                            <div class="attraction-title">Cloud 9 Surfing</div>
+                            <div class="attraction-desc">World-famous surf break</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-item">
+                    <div class="attraction-image" style="background-image: url('public/gallery/2.jpg');">
+                        <div class="attraction-overlay">
+                            <div class="attraction-distance">1.8 km</div>
+                            <div class="attraction-title">General Luna Beach</div>
+                            <div class="attraction-desc">Perfect for swimming</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-item">
+                    <div class="attraction-image" style="background-image: url('public/gallery/3.jpg');">
+                        <div class="attraction-overlay">
+                            <div class="attraction-distance">15 km</div>
+                            <div class="attraction-title">Sugba Lagoon</div>
+                            <div class="attraction-desc">Crystal clear waters</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-item">
+                    <div class="attraction-image" style="background-image: url('public/gallery/5.jpg');">
+                        <div class="attraction-overlay">
+                            <div class="attraction-distance">8 km</div>
+                            <div class="attraction-title">Naked Island</div>
+                            <div class="attraction-desc">Sandbar paradise</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="attractions-controls">
+                <button class="attraction-btn prev" id="attractionPrev">‹</button>
+                <div class="attraction-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                </div>
+                <button class="attraction-btn next" id="attractionNext">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transport Options Section -->
+    <section class="transport-section">
+        <div class="container">
+            <h2 class="section-title">🚗 Getting Here</h2>
+            <p class="section-subtitle">Easy transportation options to Arriba Homestay</p>
+            
+            <div class="transport-grid">
+                <div class="transport-item">
+                    <div class="transport-icon">✈️</div>
+                    <h3>Airport Transfer</h3>
+                    <p>Direct transfer from Sayak Airport</p>
+                    <div class="transport-info">
+                        <span class="transport-time">45 minutes</span>
+                        <span class="transport-price">₱800</span>
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-icon">🏍️</div>
+                    <h3>Motorbike Rental</h3>
+                    <p>Explore the island at your pace</p>
+                    <div class="transport-info">
+                        <span class="transport-time">Daily</span>
+                        <span class="transport-price">₱500/day</span>
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-icon">🚗</div>
+                    <h3>Car Rental</h3>
+                    <p>Comfortable air-conditioned vehicle</p>
+                    <div class="transport-info">
+                        <span class="transport-time">Daily</span>
+                        <span class="transport-price">₱1,500/day</span>
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-icon">🚌</div>
+                    <h3>Public Transport</h3>
+                    <p>Budget-friendly option</p>
+                    <div class="transport-info">
+                        <span class="transport-time">1 hour</span>
+                        <span class="transport-price">₱50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Footer -->
     <footer class="contact-footer" id="contact">
         <div class="contact-content">
@@ -2588,9 +3188,16 @@
 
             <div class="social-links">
                 <h3 class="social-title">Follow Us</h3>
-                <a href="https://www.facebook.com/profile.php?id=61581435465849" target="_blank" class="social-icon" title="Facebook">
+                <a href="https://www.facebook.com/profile.php?id=61581435465849" target="_blank" class="social-icon facebook" title="Facebook">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://www.airbnb.com/l/pAE6TgXY" target="_blank" class="social-icon airbnb" title="Airbnb">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                        <path d="M12 6c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"/>
+                        <circle cx="12" cy="12" r="2"/>
                     </svg>
                 </a>
             </div>
@@ -2707,15 +3314,27 @@
         window.addEventListener('load', createParticles);
 
         // Loading Animation
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loadingOverlay = document.getElementById('loadingOverlay');
+        function hideLoadingScreen() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
                 loadingOverlay.classList.add('hidden');
                 setTimeout(() => {
                     loadingOverlay.style.display = 'none';
                 }, 500);
-            }, 2000);
-        });
+            }
+        }
+
+        // Hide loading screen when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(hideLoadingScreen, 1000);
+            });
+        } else {
+            setTimeout(hideLoadingScreen, 1000);
+        }
+
+        // Fallback: hide after 3 seconds regardless
+        setTimeout(hideLoadingScreen, 3000);
 
         // Animated Counters
         function animateCounters() {
@@ -2803,8 +3422,15 @@
         }
 
         // Tour carousel controls
-        document.getElementById('tourNext').addEventListener('click', nextSlide);
-        document.getElementById('tourPrev').addEventListener('click', prevSlide);
+        const tourNextBtn = document.getElementById('tourNext');
+        const tourPrevBtn = document.getElementById('tourPrev');
+        
+        if (tourNextBtn) {
+            tourNextBtn.addEventListener('click', nextSlide);
+        }
+        if (tourPrevBtn) {
+            tourPrevBtn.addEventListener('click', prevSlide);
+        }
 
         // Indicator clicks
         indicators.forEach((indicator, index) => {
@@ -2988,6 +3614,292 @@
 
         // Initialize price calculator
         calculatePrice();
+
+        // Search Functionality
+        const searchData = [
+            { title: 'Master Bedroom Suite', section: 'gallery', description: 'Luxurious bedroom with modern amenities' },
+            { title: 'Kitchen & Dining', section: 'gallery', description: 'Fully equipped kitchen and dining area' },
+            { title: 'Air Conditioning', section: 'amenities', description: 'Climate control for your comfort' },
+            { title: 'WiFi & TV', section: 'amenities', description: 'High-speed internet and entertainment' },
+            { title: 'Beach Access', section: 'amenities', description: 'Direct access to beautiful beaches' },
+            { title: 'Cloud 9 Surfing', section: 'attractions', description: 'World-famous surf break nearby' },
+            { title: 'Sugba Lagoon', section: 'attractions', description: 'Crystal clear waters for swimming' },
+            { title: 'Airport Transfer', section: 'transport', description: 'Direct transfer from Sayak Airport' },
+            { title: 'Motorbike Rental', section: 'transport', description: 'Explore the island at your pace' },
+            { title: 'Contact Information', section: 'contact', description: 'Get in touch for bookings' }
+        ];
+
+        function performSearch(query) {
+            const results = searchData.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase()) ||
+                item.description.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="search-result-item">No results found</div>';
+            } else {
+                results.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <div style="font-weight: 600; color: #2c3e50;">${result.title}</div>
+                        <div style="font-size: 0.8rem; color: #7f8c8d;">${result.description}</div>
+                    `;
+                    resultItem.addEventListener('click', () => {
+                        document.querySelector(`#${result.section}`).scrollIntoView({ behavior: 'smooth' });
+                        resultsContainer.classList.remove('active');
+                        document.getElementById('searchInput').value = '';
+                    });
+                    resultsContainer.appendChild(resultItem);
+                });
+            }
+            
+            resultsContainer.classList.add('active');
+        }
+
+        // Search event listeners
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.trim();
+                if (query.length > 0) {
+                    performSearch(query);
+                } else {
+                    const searchResults = document.getElementById('searchResults');
+                    if (searchResults) {
+                        searchResults.classList.remove('active');
+                    }
+                }
+            });
+        }
+        
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                const query = searchInput ? searchInput.value.trim() : '';
+                if (query.length > 0) {
+                    performSearch(query);
+                }
+            });
+        }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                const searchResults = document.getElementById('searchResults');
+                if (searchResults) {
+                    searchResults.classList.remove('active');
+                }
+            }
+        });
+
+        // Active Section Highlighting
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Update breadcrumbs
+            const breadcrumbCurrent = document.getElementById('breadcrumbCurrent');
+            const sectionNames = {
+                'home': 'Welcome',
+                'gallery': 'Gallery',
+                'amenities': 'Amenities',
+                'details': 'Details',
+                'attractions': 'Attractions',
+                'transport': 'Transport',
+                'contact': 'Contact'
+            };
+            
+            if (currentSection && sectionNames[currentSection]) {
+                breadcrumbCurrent.textContent = sectionNames[currentSection];
+                document.getElementById('breadcrumbs').classList.add('visible');
+            } else {
+                document.getElementById('breadcrumbs').classList.remove('visible');
+            }
+        }
+
+        // Breadcrumbs functionality
+        window.addEventListener('scroll', updateActiveSection);
+
+        // Logo animation on scroll
+        window.addEventListener('scroll', () => {
+            const logo = document.querySelector('.logo');
+            if (window.scrollY > 100) {
+                logo.classList.add('scrolled');
+            } else {
+                logo.classList.remove('scrolled');
+            }
+        });
+
+        // Attractions Carousel
+        let currentAttractionSlide = 0;
+        const attractionItems = document.querySelectorAll('.attraction-item');
+        const attractionIndicators = document.querySelectorAll('.attraction-indicators .indicator');
+
+        function showAttractionSlide(index) {
+            attractionItems.forEach(item => item.style.display = 'none');
+            attractionIndicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Show 4 items at a time
+            for (let i = 0; i < 4; i++) {
+                const itemIndex = (index + i) % attractionItems.length;
+                if (attractionItems[itemIndex]) {
+                    attractionItems[itemIndex].style.display = 'block';
+                }
+            }
+            
+            attractionIndicators[index]?.classList.add('active');
+            currentAttractionSlide = index;
+        }
+
+        function nextAttractionSlide() {
+            const nextIndex = (currentAttractionSlide + 1) % attractionItems.length;
+            showAttractionSlide(nextIndex);
+        }
+
+        function prevAttractionSlide() {
+            const prevIndex = (currentAttractionSlide - 1 + attractionItems.length) % attractionItems.length;
+            showAttractionSlide(prevIndex);
+        }
+
+        // Attraction carousel controls
+        const attractionNextBtn = document.getElementById('attractionNext');
+        const attractionPrevBtn = document.getElementById('attractionPrev');
+        
+        if (attractionNextBtn) {
+            attractionNextBtn.addEventListener('click', nextAttractionSlide);
+        }
+        if (attractionPrevBtn) {
+            attractionPrevBtn.addEventListener('click', prevAttractionSlide);
+        }
+
+        // Attraction indicator clicks
+        attractionIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => showAttractionSlide(index));
+        });
+
+        // Auto-play attractions carousel
+        setInterval(nextAttractionSlide, 6000);
+
+        // Initialize attractions carousel
+        showAttractionSlide(0);
+
+        // Mobile Gestures and Touch Support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Add touch support for carousels
+        function addTouchSupport(element, nextFunction, prevFunction) {
+            element.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            element.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe(nextFunction, prevFunction);
+            });
+        }
+
+        function handleSwipe(nextFunction, prevFunction) {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextFunction(); // Swipe left - next
+                } else {
+                    prevFunction(); // Swipe right - previous
+                }
+            }
+        }
+
+        // Add touch support to carousels
+        const tourCarousel = document.querySelector('.tour-carousel');
+        const attractionsCarousel = document.querySelector('.attractions-carousel');
+        
+        if (tourCarousel) {
+            addTouchSupport(tourCarousel, nextSlide, prevSlide);
+        }
+        
+        if (attractionsCarousel) {
+            addTouchSupport(attractionsCarousel, nextAttractionSlide, prevAttractionSlide);
+        }
+
+        // Offline Mode Detection
+        function updateOnlineStatus() {
+            const status = navigator.onLine ? 'online' : 'offline';
+            if (status === 'offline') {
+                // Show offline banner
+                const offlineBanner = document.createElement('div');
+                offlineBanner.id = 'offlineBanner';
+                offlineBanner.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    background: #e74c3c;
+                    color: white;
+                    text-align: center;
+                    padding: 10px;
+                    z-index: 10000;
+                    font-size: 14px;
+                `;
+                offlineBanner.textContent = 'You are offline. Some features may not be available.';
+                document.body.appendChild(offlineBanner);
+            } else {
+                // Remove offline banner
+                const banner = document.getElementById('offlineBanner');
+                if (banner) {
+                    banner.remove();
+                }
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+
+        // Push Notifications (Service Worker)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+                console.log('Service Worker registered');
+            }).catch(error => {
+                console.log('Service Worker registration failed');
+            });
+        }
+
+        // Request notification permission
+        if ('Notification' in window) {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    // Show welcome notification
+                    new Notification('Welcome to Arriba Homestay!', {
+                        body: 'Get the latest updates and special offers.',
+                        icon: 'public/logo/logo.png'
+                    });
+                }
+            });
+        }
 
         // Add hover effect to logo
         const logo = document.querySelector('.logo');
