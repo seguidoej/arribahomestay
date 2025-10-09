@@ -1,0 +1,63 @@
+{
+  "name": "Arriba Homestay - Beach Paradise",
+  "short_name": "Arriba Homestay",
+  "description": "Experience the ultimate beach getaway at ARRIBA HOMESTAY in Siargao Islands, Philippines",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3498db",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["travel", "accommodation", "lifestyle"],
+  "icons": [
+    {
+      "src": "public/logo/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "public/logo/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "public/hero/hero.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book Now",
+      "short_name": "Book",
+      "description": "Reserve your stay at Arriba Homestay",
+      "url": "/?action=book",
+      "icons": [
+        {
+          "src": "public/logo/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Gallery",
+      "short_name": "Photos",
+      "description": "View our photo gallery",
+      "url": "/#gallery",
+      "icons": [
+        {
+          "src": "public/logo/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

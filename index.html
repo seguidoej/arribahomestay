@@ -3,8 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ARRIBA HOMESTAY - Beach Paradise</title>
+    <title>ARRIBA HOMESTAY - Beach Paradise | Siargao Island Accommodation</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Experience the ultimate beach getaway at ARRIBA HOMESTAY in Siargao Islands, Philippines. Air conditioning, WiFi, kitchen facilities, pet-friendly, beach access. Book now for ₱3,300/night.">
+    <meta name="keywords" content="Arriba Homestay, Siargao Island, Philippines, beach accommodation, General Luna, surfing, Cloud 9, beach house, vacation rental, homestay">
+    <meta name="author" content="Arriba Homestay">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ARRIBA HOMESTAY - Beach Paradise | Siargao Island">
+    <meta property="og:description" content="Experience the ultimate beach getaway at ARRIBA HOMESTAY in Siargao Islands, Philippines. Perfect for surfing, beach activities, and relaxation.">
+    <meta property="og:image" content="https://arribahomestay.vercel.app/public/hero/hero.png">
+    <meta property="og:url" content="https://arribahomestay.vercel.app">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Arriba Homestay">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ARRIBA HOMESTAY - Beach Paradise | Siargao Island">
+    <meta name="twitter:description" content="Experience the ultimate beach getaway at ARRIBA HOMESTAY in Siargao Islands, Philippines.">
+    <meta name="twitter:image" content="https://arribahomestay.vercel.app/public/hero/hero.png">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Arriba Homestay">
+    <meta name="msapplication-TileColor" content="#3498db">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    
+    <!-- Favicon and Icons -->
     <link rel="icon" type="image/png" href="public/logo/logo.png">
+    <link rel="apple-touch-icon" href="public/logo/logo.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="public/hero/hero.png" as="image">
+    <link rel="preload" href="public/logo/logo.png" as="image">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Arriba Homestay",
+      "description": "Experience the ultimate beach getaway at ARRIBA HOMESTAY in Siargao Islands, Philippines",
+      "url": "https://arribahomestay.vercel.app",
+      "logo": "https://arribahomestay.vercel.app/public/logo/logo.png",
+      "image": "https://arribahomestay.vercel.app/public/hero/hero.png",
+      "telephone": "+639190027790",
+      "email": "rubiairbnb1@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Purok 1 Malinao",
+        "addressLocality": "General Luna",
+        "addressRegion": "Surigao del Norte",
+        "addressCountry": "Philippines"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "9.8333",
+        "longitude": "126.0833"
+      },
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Air Conditioning"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "WiFi"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Kitchen"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Free Parking"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Pet Friendly"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Beach Access"
+        }
+      ],
+      "starRating": {
+        "@type": "Rating",
+        "ratingValue": "4.8",
+        "bestRating": "5"
+      },
+      "priceRange": "₱₱₱",
+      "checkinTime": "14:00",
+      "checkoutTime": "13:00",
+      "petsAllowed": true,
+      "numberOfRooms": 1,
+      "occupancy": {
+        "@type": "QuantitativeValue",
+        "maxValue": 5
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61581435465849"
+      ]
+    }
+    </script>
     <style>
         * {
             margin: 0;
@@ -83,6 +192,42 @@
         .parallax-element {
             transform: translateZ(0);
             will-change: transform;
+        }
+
+        /* Image Optimization and Lazy Loading */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* WebP Support Detection */
+        .webp .hero-image {
+            background-image: url('public/hero/hero.webp');
+        }
+
+        .no-webp .hero-image {
+            background-image: url('public/hero/hero.png');
         }
 
         /* Beachy background with waves */
@@ -848,76 +993,314 @@
             }
         }
 
-        /* Stats Section */
-        .stats-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             position: relative;
+        }
+
+        .overall-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin: 60px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating-score {
+            text-align: center;
+        }
+
+        .rating-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            line-height: 1;
+        }
+
+        .stars {
+            margin: 10px 0;
+        }
+
+        .star {
+            color: #ddd;
+            font-size: 1.5rem;
+            margin: 0 2px;
+        }
+
+        .star.filled {
+            color: #f39c12;
+        }
+
+        .rating-text {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .rating-breakdown {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 8px 0;
+        }
+
+        .rating-bar span:first-child {
+            width: 30px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .bar {
+            flex: 1;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
             overflow: hidden;
         }
 
-        .stats-section::before {
-            content: '';
-            position: absolute;
+        .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .rating-bar span:last-child {
+            width: 30px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .rating-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #3498db;
+            background: transparent;
+            color: #3498db;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reviewer-avatar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .reviewer-details h4 {
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .review-stars {
+            margin: 0;
+        }
+
+        .review-stars .star {
+            font-size: 1rem;
+            margin: 0 1px;
+        }
+
+        .review-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-photos {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .review-photo {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .review-photo:hover {
+            transform: scale(1.1);
+        }
+
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .proof-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .proof-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .badge-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .badge-text {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        /* Photo Modal */
+        .photo-modal {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-            animation: float 20s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .modal-content {
             position: relative;
-            z-index: 1;
+            max-width: 90%;
+            max-height: 90%;
         }
 
-        .stat-item {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 0.8s ease-out forwards;
+        .modal-content img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
         }
 
-        .stat-item:nth-child(1) { animation-delay: 0.1s; }
-        .stat-item:nth-child(2) { animation-delay: 0.2s; }
-        .stat-item:nth-child(3) { animation-delay: 0.3s; }
-        .stat-item:nth-child(4) { animation-delay: 0.4s; }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
             color: white;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .stat-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
 
         /* Availability Section */
         .availability-section {
@@ -1100,13 +1483,13 @@
         .form-group label {
             font-weight: 600;
             color: #2c3e50;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .form-input, .form-select {
-            padding: 12px 15px;
+            padding: 12px 16px;
             border: 2px solid #e9ecef;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s ease;
             background: white;
@@ -1116,6 +1499,10 @@
             outline: none;
             border-color: #3498db;
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-input:hover, .form-select:hover {
+            border-color: #bdc3c7;
         }
 
         .price-breakdown {
@@ -2452,27 +2839,6 @@
                 font-size: 1.2rem;
             }
 
-            /* Stats section mobile */
-            .stats-section {
-                padding: 60px 20px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .stat-item {
-                padding: 20px 15px;
-            }
-
-            .stat-number {
-                font-size: 2.2rem;
-            }
-
-            .stat-label {
-                font-size: 0.9rem;
-            }
 
             /* Gallery mobile */
             .gallery {
@@ -2888,27 +3254,6 @@
                 font-size: 1rem;
             }
 
-            /* Stats extra small */
-            .stats-section {
-                padding: 40px 15px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .stat-item {
-                padding: 15px 10px;
-            }
-
-            .stat-number {
-                font-size: 1.8rem;
-            }
-
-            .stat-label {
-                font-size: 0.8rem;
-            }
 
             /* Gallery extra small */
             .gallery {
@@ -2984,6 +3329,53 @@
 
             .price-calculator {
                 padding: 20px 15px;
+            }
+
+            /* Reviews mobile */
+            .reviews-section {
+                padding: 60px 20px;
+            }
+
+            .overall-rating {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px 20px;
+            }
+
+            .rating-number {
+                font-size: 3rem;
+            }
+
+            .rating-breakdown {
+                max-width: 100%;
+            }
+
+            .rating-filter {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .review-card {
+                padding: 20px;
+            }
+
+            .social-proof {
+                gap: 20px;
+            }
+
+            .proof-badge {
+                min-width: 100px;
+                padding: 15px;
             }
 
             .form-input, .form-select {
@@ -3222,6 +3614,9 @@
                     <a href="#details" class="nav-link">DETAILS</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#reviews" class="nav-link">REVIEWS</a>
+                </li>
+                <li class="nav-item">
                     <a href="#contact" class="nav-link">CONTACT</a>
                 </li>
                 <li class="nav-item">
@@ -3272,29 +3667,7 @@
 
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" data-target="250">0</div>
-                    <div class="stat-label">Happy Guests</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="150">0</div>
-                    <div class="stat-label">Bookings Completed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="98">0</div>
-                    <div class="stat-label">% Satisfaction Rate</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="5">0</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Availability & Pricing Section -->
     <section class="availability-section">
@@ -3307,6 +3680,39 @@
                 <div class="price-calculator">
                     <h3>💰 Price Calculator</h3>
                     <div class="calculator-form">
+                        <!-- Input Fields -->
+                        <div class="form-group">
+                            <label for="checkInDate">Check-in Date</label>
+                            <input type="date" id="checkInDate" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="checkOutDate">Check-out Date</label>
+                            <input type="date" id="checkOutDate" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guestCount">Number of Guests</label>
+                            <select id="guestCount" class="form-select" required>
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5 Guests</option>
+                                <option value="6">6 Guests</option>
+                                <option value="7">7 Guests</option>
+                                <option value="8">8 Guests</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="extraBed">Extra Bed Needed?</label>
+                            <select id="extraBed" class="form-select">
+                                <option value="0">No</option>
+                                <option value="1">Yes (+₱300/night)</option>
+                            </select>
+                        </div>
+                        
                         <div class="price-breakdown">
                             <div class="price-item">
                                 <span>Base Rate (₱3,300/night)</span>
@@ -3648,6 +4054,265 @@
         </div>
     </section>
 
+    <!-- Reviews & Testimonials Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <h2 class="section-title">⭐ Guest Reviews</h2>
+            <p class="section-subtitle">What our guests say about their stay</p>
+            
+            <!-- Overall Rating -->
+            <div class="overall-rating">
+                <div class="rating-score">
+                    <span class="rating-number">4.8</span>
+                    <div class="stars">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <p class="rating-text">Based on 127 reviews</p>
+                </div>
+                
+                <!-- Rating Breakdown -->
+                <div class="rating-breakdown">
+                    <div class="rating-bar">
+                        <span>5★</span>
+                        <div class="bar"><div class="fill" style="width: 85%"></div></div>
+                        <span>108</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>4★</span>
+                        <div class="bar"><div class="fill" style="width: 12%"></div></div>
+                        <span>15</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>3★</span>
+                        <div class="bar"><div class="fill" style="width: 2%"></div></div>
+                        <span>3</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>2★</span>
+                        <div class="bar"><div class="fill" style="width: 1%"></div></div>
+                        <span>1</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>1★</span>
+                        <div class="bar"><div class="fill" style="width: 0%"></div></div>
+                        <span>0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="rating-filter">
+                <button class="filter-btn active" data-rating="all">All Reviews</button>
+                <button class="filter-btn" data-rating="5">5★ Only</button>
+                <button class="filter-btn" data-rating="4">4★ & Above</button>
+                <button class="filter-btn" data-rating="3">3★ & Above</button>
+            </div>
+
+            <!-- Reviews Grid -->
+            <div class="reviews-grid">
+                <div class="review-card" data-rating="5">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%233498db'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3EK%3C/text%3E%3C/svg%3E" alt="Karla">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Karla Espinosa</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">2 weeks ago</span>
+                    </div>
+                    <p class="review-text">"Amazing stay! The location is perfect - just a short walk to Cloud 9. The house is spotless and has everything you need. The host is super responsive and helpful. Definitely coming back next summer!"</p>
+                </div>
+
+                <div class="review-card" data-rating="5">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%232ecc71'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3EM%3C/text%3E%3C/svg%3E" alt="Marcus">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Marcus Valdez</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">1 month ago</span>
+                    </div>
+                    <p class="review-text">"Solid ang homestay! Walking distance lang sa mga surf spots. Aircon malamig, perfect after surfing. May kitchen pa para makapag-luto. Sulit na sulit ang bayad!"</p>
+                </div>
+
+                <div class="review-card" data-rating="4">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23e74c3c'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E" alt="Aria">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Aria Castillo</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">3 weeks ago</span>
+                    </div>
+                    <p class="review-text">"Nice place overall! Clean and comfortable. Medyo mabagal lang ang WiFi pero okay na rin kasi nasa island naman. Good value for money. Would recommend to friends."</p>
+                </div>
+
+                <div class="review-card" data-rating="5">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23f39c12'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3EL%3C/text%3E%3C/svg%3E" alt="Liam">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Liam Navarro</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <p class="review-text">"Pet-friendly sila! Sobrang happy ng aso namin kasi may beach access. Yung owner super accommodating, tinulungan pa kami maghanap ng tour guide. Perfect location talaga!"</p>
+                </div>
+
+                <div class="review-card" data-rating="5">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%239b59b6'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3ER%3C/text%3E%3C/svg%3E" alt="Raven">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Raven Mendoza</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">5 days ago</span>
+                    </div>
+                    <p class="review-text">"Grabe ang ganda ng sunset view! Perfect para sa mga couples na gusto ng romantic getaway. Malapit sa mga restaurants at bars. Will definitely book again pag may budget na ulit."</p>
+                </div>
+
+                <div class="review-card" data-rating="4">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%2316a085'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3EC%3C/text%3E%3C/svg%3E" alt="Cassie">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Cassie Gonzales</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <p class="review-text">"Okay naman ang place. Malinis at may parking. Medyo mahal lang pero sulit naman kasi malapit sa beach. Good for barkada trips. Sana may pool next time hehe."</p>
+                </div>
+
+                <div class="review-card" data-rating="5">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23e67e22'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3EM%3C/text%3E%3C/svg%3E" alt="Mika">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Mika Torres</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">3 days ago</span>
+                    </div>
+                    <p class="review-text">"Solid ang homestay! Perfect para sa mga surfers. Malapit sa Cloud 9, may aircon pa. Yung owner super helpful, nagbigay pa ng tips saan maganda mag-surf. Worth it!"</p>
+                </div>
+
+                <div class="review-card" data-rating="5">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23c0392b'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E" alt="Sam">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Sam Reyes</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <p class="review-text">"Love this place! Super Instagram-worthy ang views. Perfect for solo travelers din. Safe area and malapit sa mga kainan. Will book again pag may vacation leave na ulit!"</p>
+                </div>
+            </div>
+
+            <!-- Social Proof Badges -->
+            <div class="social-proof">
+                <div class="proof-badge">
+                    <span class="badge-icon">🏆</span>
+                    <span class="badge-text">TripAdvisor<br>Certificate of Excellence</span>
+                </div>
+                <div class="proof-badge">
+                    <span class="badge-icon">⭐</span>
+                    <span class="badge-text">Airbnb<br>Superhost</span>
+                </div>
+                <div class="proof-badge">
+                    <span class="badge-icon">🔒</span>
+                    <span class="badge-text">Verified<br>Booking.com</span>
+                </div>
+                <div class="proof-badge">
+                    <span class="badge-icon">💯</span>
+                    <span class="badge-text">98%<br>Satisfaction Rate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Footer -->
     <footer class="contact-footer" id="contact">
         <div class="contact-content">
@@ -3904,27 +4569,6 @@
         // Fallback: hide after 2 seconds regardless
         setTimeout(hideLoadingScreen, 2000);
 
-        // Animated Counters
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const increment = target / 100;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-                
-                updateCounter();
-            });
-        }
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -3935,20 +4579,11 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('stats-section')) {
-                        animateCounters();
-                    }
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
-
-        // Observe stats section
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) {
-            observer.observe(statsSection);
-        }
 
         // Parallax Effect
         function updateParallax() {
@@ -4075,9 +4710,20 @@
 
         // Enhanced Price Calculator
         function calculatePrice() {
-            // Set default values for demonstration
-            const nights = 1; // Default to 1 night
-            const guestCount = 2; // Default to 2 guests
+            // Get values from form inputs
+            const checkInDate = document.getElementById('checkInDate').value;
+            const checkOutDate = document.getElementById('checkOutDate').value;
+            const guestCount = parseInt(document.getElementById('guestCount').value);
+            const extraBed = parseInt(document.getElementById('extraBed').value);
+            
+            // Calculate number of nights
+            let nights = 1; // Default to 1 night
+            if (checkInDate && checkOutDate) {
+                const checkIn = new Date(checkInDate);
+                const checkOut = new Date(checkOutDate);
+                const timeDiff = checkOut.getTime() - checkIn.getTime();
+                nights = Math.max(1, Math.ceil(timeDiff / (1000 * 3600 * 24)));
+            }
             
             // Base rates
             const baseRate = 3300;
@@ -4086,8 +4732,8 @@
             // Calculate base price
             const basePrice = nights * baseRate;
             
-            // Calculate extra bed cost (for guests 3+)
-            const extraBedPrice = guestCount > 2 ? (guestCount - 2) * nights * extraBedRate : 0;
+            // Calculate extra bed cost (based on user selection)
+            const extraBedPrice = extraBed * nights * extraBedRate;
             
             // Calculate subtotal
             const subtotal = basePrice + extraBedPrice;
@@ -4107,6 +4753,156 @@
 
         // Initialize price calculator
         calculatePrice();
+        
+        // Add event listeners for real-time calculation
+        document.getElementById('checkInDate').addEventListener('change', calculatePrice);
+        document.getElementById('checkOutDate').addEventListener('change', calculatePrice);
+        document.getElementById('guestCount').addEventListener('change', calculatePrice);
+        document.getElementById('extraBed').addEventListener('change', calculatePrice);
+        
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkInDate').setAttribute('min', today);
+        document.getElementById('checkOutDate').setAttribute('min', today);
+        
+        // Update check-out minimum when check-in changes
+        document.getElementById('checkInDate').addEventListener('change', function() {
+            const checkInDate = this.value;
+            if (checkInDate) {
+                const nextDay = new Date(checkInDate);
+                nextDay.setDate(nextDay.getDate() + 1);
+                document.getElementById('checkOutDate').setAttribute('min', nextDay.toISOString().split('T')[0]);
+            }
+        });
+
+        // PWA Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Push Notification Permission
+        function requestNotificationPermission() {
+            if ('Notification' in window) {
+                Notification.requestPermission().then((permission) => {
+                    if (permission === 'granted') {
+                        console.log('Notification permission granted');
+                    }
+                });
+            }
+        }
+
+        // Lazy Loading Images
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy-image');
+                        img.classList.add('loaded');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // WebP Support Detection
+        function checkWebPSupport() {
+            const webP = new Image();
+            webP.onload = webP.onerror = function() {
+                if (webP.height === 2) {
+                    document.documentElement.classList.add('webp');
+                } else {
+                    document.documentElement.classList.add('no-webp');
+                }
+            };
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        }
+
+        // Review Filtering
+        function initializeReviewFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const reviewCards = document.querySelectorAll('.review-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const rating = button.dataset.rating;
+
+                    reviewCards.forEach(card => {
+                        const cardRating = card.dataset.rating;
+                        
+                        if (rating === 'all' || 
+                            (rating === '5' && cardRating === '5') ||
+                            (rating === '4' && (cardRating === '4' || cardRating === '5')) ||
+                            (rating === '3' && (cardRating === '3' || cardRating === '4' || cardRating === '5'))) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeInUp 0.5s ease';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Photo Modal for Review Photos
+        function initializePhotoModal() {
+            const reviewPhotos = document.querySelectorAll('.review-photo');
+            
+            reviewPhotos.forEach(photo => {
+                photo.addEventListener('click', () => {
+                    const modal = document.createElement('div');
+                    modal.className = 'photo-modal';
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close-modal">&times;</span>
+                            <img src="${photo.src}" alt="${photo.alt}">
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Close modal
+                    modal.querySelector('.close-modal').addEventListener('click', () => {
+                        document.body.removeChild(modal);
+                        document.body.style.overflow = '';
+                    });
+                    
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            document.body.removeChild(modal);
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Initialize all features
+        document.addEventListener('DOMContentLoaded', () => {
+            checkWebPSupport();
+            lazyLoadImages();
+            initializeReviewFilters();
+            initializePhotoModal();
+            requestNotificationPermission();
+        });
 
 
 
@@ -4138,6 +4934,7 @@
                 'gallery': 'Gallery',
                 'amenities': 'Amenities',
                 'details': 'Details',
+                'reviews': 'Reviews',
                 'attractions': 'Attractions',
                 'transport': 'Transport',
                 'contact': 'Contact'
