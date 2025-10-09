@@ -617,7 +617,20 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .mobile-menu-toggle:focus {
+            outline: 2px solid #3498db;
+            outline-offset: 2px;
         }
 
         .hamburger {
@@ -625,20 +638,43 @@
             height: 3px;
             background: #2c3e50;
             margin: 3px 0;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 2px;
+            transform-origin: center;
         }
 
         .mobile-menu-toggle.active .hamburger:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
+            background: #e74c3c;
         }
 
         .mobile-menu-toggle.active .hamburger:nth-child(2) {
             opacity: 0;
+            transform: scaleX(0);
         }
 
         .mobile-menu-toggle.active .hamburger:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -6px);
+            background: #e74c3c;
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Hero Section */
@@ -2645,26 +2681,86 @@
                 width: 100%;
                 height: calc(100vh - 70px);
                 background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
+                backdrop-filter: blur(15px);
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
-                padding-top: 50px;
-                transition: left 0.3s ease;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                padding-top: 40px;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+                overflow-y: auto;
             }
 
             .nav-menu.active {
                 left: 0;
+                transform: translateX(0);
             }
 
             .nav-item {
-                margin: 20px 0;
+                margin: 8px 0;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.3s ease;
             }
 
+            .nav-menu.active .nav-item {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-menu.active .nav-item:nth-child(1) { transition-delay: 0.1s; }
+            .nav-menu.active .nav-item:nth-child(2) { transition-delay: 0.2s; }
+            .nav-menu.active .nav-item:nth-child(3) { transition-delay: 0.3s; }
+            .nav-menu.active .nav-item:nth-child(4) { transition-delay: 0.4s; }
+            .nav-menu.active .nav-item:nth-child(5) { transition-delay: 0.5s; }
+            .nav-menu.active .nav-item:nth-child(6) { transition-delay: 0.6s; }
+
             .nav-link {
-                font-size: 20px;
-                padding: 15px 0;
+                font-size: 18px;
+                padding: 16px 24px;
+                border-radius: 12px;
+                transition: all 0.3s ease;
+                display: block;
+                width: 280px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .nav-link::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .nav-link:hover::before {
+                left: 100%;
+            }
+
+            .nav-link:hover {
+                background: rgba(52, 152, 219, 0.1);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+            }
+
+            .nav-link:active {
+                transform: translateY(0);
+            }
+
+            .nav-link.active {
+                background: linear-gradient(135deg, #3498db, #2ecc71);
+                color: white;
+                box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            }
+
+            .nav-link.active::before {
+                display: none;
             }
 
             .mobile-menu-toggle {
@@ -3133,14 +3229,16 @@
                 </li>
             </ul>
 
-
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu" role="button" tabindex="0">
                 <span class="hamburger"></span>
                 <span class="hamburger"></span>
                 <span class="hamburger"></span>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
 
     <!-- Breadcrumbs -->
     <div class="breadcrumbs" id="breadcrumbs">
@@ -3453,7 +3551,7 @@
             
             <div class="attractions-carousel">
                 <div class="attraction-item">
-                    <div class="attraction-image" style="background-image: url('public/gallery/1.jpg');">
+                    <div class="attraction-image" style="background-image: url('public/attractions/cloud9.jpg');">
                         <div class="attraction-overlay">
                             <div class="attraction-distance">2.5 km</div>
                             <div class="attraction-title">Cloud 9 Surfing</div>
@@ -3462,7 +3560,7 @@
                     </div>
                 </div>
                 <div class="attraction-item">
-                    <div class="attraction-image" style="background-image: url('public/gallery/2.jpg');">
+                    <div class="attraction-image" style="background-image: url('public/attractions/General luna beach.jpg');">
                         <div class="attraction-overlay">
                             <div class="attraction-distance">1.8 km</div>
                             <div class="attraction-title">General Luna Beach</div>
@@ -3471,7 +3569,7 @@
                     </div>
                 </div>
                 <div class="attraction-item">
-                    <div class="attraction-image" style="background-image: url('public/gallery/3.jpg');">
+                    <div class="attraction-image" style="background-image: url('public/attractions/sugba lagoon.jpg');">
                         <div class="attraction-overlay">
                             <div class="attraction-distance">15 km</div>
                             <div class="attraction-title">Sugba Lagoon</div>
@@ -3480,7 +3578,7 @@
                     </div>
                 </div>
                 <div class="attraction-item">
-                    <div class="attraction-image" style="background-image: url('public/gallery/5.jpg');">
+                    <div class="attraction-image" style="background-image: url('public/attractions/naked island.jpg');">
                         <div class="attraction-overlay">
                             <div class="attraction-distance">8 km</div>
                             <div class="attraction-title">Naked Island</div>
@@ -3611,16 +3709,88 @@
             }
         });
 
-        // Mobile menu toggle
+        // Enhanced Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const navMenu = document.getElementById('nav-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-            if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+        function toggleMobileMenu() {
+            const isActive = mobileMenuToggle.classList.contains('active');
+            
+            if (isActive) {
+                // Close menu
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            } else {
+                // Open menu
+                mobileMenuToggle.classList.add('active');
+                navMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
+        }
+
+        function closeMobileMenu() {
+            mobileMenuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (mobileMenuToggle && navMenu && mobileMenuOverlay) {
+            // Click toggle
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+            
+            // Keyboard support
+            mobileMenuToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleMobileMenu();
+                }
+            });
+            
+            // Overlay click to close
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+            
+            // Escape key to close
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Close menu on window resize (if switching to desktop)
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Touch gesture support for mobile menu
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            navMenu.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            navMenu.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                // Swipe left to close menu
+                if (swipeDistance < -swipeThreshold && navMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            }
+        }
 
             // Smooth scrolling for navigation links
         const navLinks = document.querySelectorAll('.nav-link');
@@ -3629,9 +3799,8 @@
                 const targetId = link.getAttribute('href');
                     
                     // Close mobile menu if open
-                    if (mobileMenuToggle && navMenu) {
-                        mobileMenuToggle.classList.remove('active');
-                        navMenu.classList.remove('active');
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        closeMobileMenu();
                     }
                 
                 // Only prevent default and smooth scroll for anchor links (starting with #)
