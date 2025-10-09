@@ -3237,19 +3237,15 @@
             navMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
+        // Smooth scrolling for navigation links
         const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Enhanced smooth scrolling for anchor links only
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
+                
+                // Close mobile menu if open
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
                 
                 // Only prevent default and smooth scroll for anchor links (starting with #)
                 if (targetId && targetId.startsWith('#')) {
@@ -3257,12 +3253,13 @@
                     const targetSection = document.querySelector(targetId);
                     
                     if (targetSection) {
-                        const offsetTop = targetSection.offsetTop - 70; // Account for navbar height
+                        console.log('Scrolling to:', targetId, targetSection);
+                        const offsetTop = targetSection.offsetTop - 80; // Account for navbar height
                         
-                        // Enhanced smooth scrolling with easing
+                        // Smooth scrolling with easing
                         const startPosition = window.pageYOffset;
                         const distance = offsetTop - startPosition;
-                        const duration = 1000; // 1 second for super smooth transition
+                        const duration = 800; // 0.8 seconds for smooth transition
                         let start = null;
                         
                         function easeInOutCubic(t) {
@@ -3285,7 +3282,7 @@
                         requestAnimationFrame(animation);
                     }
                 }
-                // For non-anchor links (like booking.html), let the browser handle navigation normally
+                // For non-anchor links (like external links), let the browser handle navigation normally
             });
         });
 
