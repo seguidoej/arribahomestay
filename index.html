@@ -125,6 +125,345 @@
             scroll-behavior: smooth;
         }
 
+        /* Page Transitions */
+        * {
+            transition: all 0.3s ease;
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Enhanced Hover Effects */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .button-glow {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .button-glow:hover {
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .button-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .button-glow:hover::before {
+            left: 100%;
+        }
+
+        .image-zoom {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .image-zoom:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Glassmorphism Effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Neumorphism Effects */
+        .neumorphic-button {
+            background: #f0f0f0;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 
+                8px 8px 16px #d1d9e6,
+                -8px -8px 16px #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .neumorphic-button:hover {
+            box-shadow: 
+                4px 4px 8px #d1d9e6,
+                -4px -4px 8px #ffffff;
+        }
+
+        .neumorphic-button:active {
+            box-shadow: 
+                inset 4px 4px 8px #d1d9e6,
+                inset -4px -4px 8px #ffffff;
+        }
+
+        /* Gradient Overlays */
+        .gradient-overlay {
+            position: relative;
+        }
+
+        .gradient-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(52, 152, 219, 0.3), rgba(46, 204, 113, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .gradient-overlay:hover::before {
+            opacity: 1;
+        }
+
+        /* Custom Beach Cursor */
+        .beach-cursor {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23ffd700" stroke="%23ff8c00" stroke-width="2"/><path d="M8 12c0-2 2-4 4-4s4 2 4 4c0 1-1 2-2 2s-2-1-2-2zm8 0c0-2 2-4 4-4s4 2 4 4c0 1-1 2-2 2s-2-1-2-2z" fill="%23ff8c00"/></svg>'), auto;
+        }
+
+        /* Loading Animations */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 2px;
+            animation: progress 2s ease-in-out;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Micro-interactions */
+        .micro-bounce {
+            transition: transform 0.1s ease;
+        }
+
+        .micro-bounce:active {
+            transform: scale(0.95);
+        }
+
+        .form-validation {
+            transition: all 0.3s ease;
+        }
+
+        .form-validation.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+
+        .form-validation.success {
+            border-color: #2ecc71;
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
+        }
+
+        /* Accordion Styles */
+        .accordion {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #e9ecef;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 200px;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* Mobile Improvements */
+        .mobile-swipe {
+            touch-action: pan-x;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        .mobile-swipe-item {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+
+        .touch-feedback {
+            transition: all 0.1s ease;
+        }
+
+        .touch-feedback:active {
+            transform: scale(0.98);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .thumb-friendly {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Offline Indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .offline-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .offline-indicator.online {
+            background: #2ecc71;
+        }
+
+        /* Interactive Gallery */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .gallery-modal.active {
+            display: flex;
+        }
+
+        .gallery-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .gallery-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .gallery-prev {
+            left: 30px;
+        }
+
+        .gallery-next {
+            right: 30px;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f8f9fa;
@@ -3589,7 +3928,7 @@
         }
     </style>
 </head>
-<body>
+    <body class="beach-cursor">
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -3651,11 +3990,11 @@
         <div class="hero-content parallax-element">
             <h1>Welcome to Arriba Homestay</h1>
             <p>Experience the ultimate beach getaway at ARRIBA HOMESTAY</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvwmYmpRC01e7SplZoCtyFnK_5O085Kktdh_CRHciDFqowJw/viewform?usp=header" target="_blank" class="cta-button">RESERVE NOW</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvwmYmpRC01e7SplZoCtyFnK_5O085Kktdh_CRHciDFqowJw/viewform?usp=header" target="_blank" class="cta-button button-glow micro-bounce">RESERVE NOW</a>
         </div>
         
         <!-- Weather Widget -->
-        <div class="weather-widget parallax-element">
+        <div class="weather-widget parallax-element glass-card fade-in">
             <div class="weather-icon" id="weatherIcon">🌤️</div>
             <div class="weather-info">
                 <div class="weather-temp" id="weatherTemp">28°C</div>
@@ -3677,23 +4016,23 @@
             
             <div class="availability-grid">
                 <!-- Price Calculator -->
-                <div class="price-calculator">
+                <div class="price-calculator glass-card card-hover">
                     <h3>💰 Price Calculator</h3>
                     <div class="calculator-form">
                         <!-- Input Fields -->
                         <div class="form-group">
                             <label for="checkInDate">Check-in Date</label>
-                            <input type="date" id="checkInDate" class="form-input" required>
+                            <input type="date" id="checkInDate" class="form-input form-validation thumb-friendly" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="checkOutDate">Check-out Date</label>
-                            <input type="date" id="checkOutDate" class="form-input" required>
+                            <input type="date" id="checkOutDate" class="form-input form-validation thumb-friendly" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="guestCount">Number of Guests</label>
-                            <select id="guestCount" class="form-select" required>
+                            <select id="guestCount" class="form-select form-validation thumb-friendly" required>
                                 <option value="1">1 Guest</option>
                                 <option value="2" selected>2 Guests</option>
                                 <option value="3">3 Guests</option>
@@ -3707,12 +4046,12 @@
                         
                         <div class="form-group">
                             <label for="extraBed">Extra Bed Needed?</label>
-                            <select id="extraBed" class="form-select">
+                            <select id="extraBed" class="form-select form-validation thumb-friendly">
                                 <option value="0">No</option>
                                 <option value="1">Yes (+₱300/night)</option>
                             </select>
                         </div>
-                        
+
                         <div class="price-breakdown">
                             <div class="price-item">
                                 <span>Base Rate (₱3,300/night)</span>
@@ -3732,7 +4071,7 @@
                             </div>
                         </div>
                         <div class="booking-actions">
-                            <button class="book-now-btn" id="bookNowBtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSfvwmYmpRC01e7SplZoCtyFnK_5O085Kktdh_CRHciDFqowJw/viewform?usp=header', '_blank')">
+                            <button class="book-now-btn button-glow micro-bounce touch-feedback thumb-friendly" id="bookNowBtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSfvwmYmpRC01e7SplZoCtyFnK_5O085Kktdh_CRHciDFqowJw/viewform?usp=header', '_blank')">
                                 Book Now
                             </button>
                             <div class="booking-note">
@@ -3798,45 +4137,45 @@
         <div class="container">
             <h2 class="section-title">Gallery</h2>
             <p class="section-subtitle">Discover the beauty of Arriba Homestay through our stunning collection</p>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/1.jpg');"></div>
+            <div class="gallery-grid mobile-swipe">
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/1.jpg');"></div>
                     <div class="gallery-description">Master Bedroom Suite</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/2.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/2.jpg');"></div>
                     <div class="gallery-description">Twin Bedroom Accommodation</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/3.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/3.jpg');"></div>
                     <div class="gallery-description">Executive Studio Suite</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/5.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/5.jpg');"></div>
                     <div class="gallery-description">Contemporary Kitchen & Dining</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/6.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/6.jpg');"></div>
                     <div class="gallery-description">Deluxe Bedroom Suite</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/7.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/7.jpg');"></div>
                     <div class="gallery-description">Premium Amenities & Services</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/8.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/8.jpg');"></div>
                     <div class="gallery-description">Elegant Bedroom Design</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/10.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/10.jpg');"></div>
                     <div class="gallery-description">Spacious Living & Work Area</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/11.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/11.jpg');"></div>
                     <div class="gallery-description">Luxury Loft Accommodation</div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background-image: url('public/gallery/12.jpg');"></div>
+                <div class="gallery-item card-hover fade-in gradient-overlay">
+                    <div class="gallery-image image-zoom" style="background-image: url('public/gallery/12.jpg');"></div>
                     <div class="gallery-description">Entertainment & Dining Lounge</div>
                 </div>
             </div>
@@ -4359,6 +4698,19 @@
     <!-- Floating Particles -->
     <div class="particles" id="particles"></div>
 
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offlineIndicator">
+        <span id="offlineText">You're offline</span>
+    </div>
+
+    <!-- Interactive Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <span class="gallery-close" id="galleryClose">&times;</span>
+        <span class="gallery-nav gallery-prev" id="galleryPrev">&#8249;</span>
+        <img id="galleryImage" src="" alt="Gallery Image">
+        <span class="gallery-nav gallery-next" id="galleryNext">&#8250;</span>
+    </div>
+
     <script>
         // Wait for DOM to be ready
         document.addEventListener('DOMContentLoaded', function() {
@@ -4455,7 +4807,7 @@
                     closeMobileMenu();
                 }
             }
-        }
+            }
 
             // Smooth scrolling for navigation links
         const navLinks = document.querySelectorAll('.nav-link');
@@ -4643,56 +4995,70 @@
         // Auto-play carousel
         setInterval(nextSlide, 5000);
 
-        // Real-time Weather Functionality
+        // Real-time Weather Functionality for Siargao
         function updateWeather() {
-            const now = new Date();
-            const hour = now.getHours();
             const temp = document.getElementById('weatherTemp');
             const icon = document.getElementById('weatherIcon');
             const desc = document.getElementById('weatherDesc');
             const time = document.getElementById('weatherTime');
             
-            // Determine if it's day or night
+            // Get current time in Siargao (UTC+8)
+            const now = new Date();
+            const siargaoTime = new Date(now.getTime() + (8 * 60 * 60 * 1000)); // UTC+8
+            const hour = siargaoTime.getHours();
+            
+            // Determine if it's day or night in Siargao
             const isNight = hour >= 18 || hour <= 6;
             
-            // Simulate realistic temperature based on time
-            let temperature;
-            if (isNight) {
-                temperature = 24 + Math.floor(Math.random() * 3); // 24-26°C at night
+            // Realistic Siargao temperature patterns based on time
+            let temperature, weatherCondition;
+            
+            if (hour >= 6 && hour <= 10) {
+                temperature = Math.floor(Math.random() * 3) + 26; // 26-28°C morning
+                weatherCondition = isNight ? 'clear' : 'sunny';
+            } else if (hour >= 10 && hour <= 16) {
+                temperature = Math.floor(Math.random() * 4) + 28; // 28-31°C afternoon
+                weatherCondition = Math.random() > 0.3 ? 'sunny' : 'partly_cloudy';
+            } else if (hour >= 16 && hour <= 20) {
+                temperature = Math.floor(Math.random() * 3) + 27; // 27-29°C evening
+                weatherCondition = Math.random() > 0.5 ? 'sunny' : 'partly_cloudy';
             } else {
-                temperature = 28 + Math.floor(Math.random() * 4); // 28-31°C during day
+                temperature = Math.floor(Math.random() * 3) + 25; // 25-27°C night
+                weatherCondition = Math.random() > 0.7 ? 'clear' : 'cloudy';
             }
             
             // Update temperature
             temp.textContent = `${temperature}°C`;
             
-            // Update icon based on time and weather
-            const weatherConditions = [
-                { icon: '☀️', desc: 'Sunny', nightIcon: '🌙', nightDesc: 'Clear night' },
-                { icon: '⛅', desc: 'Partly cloudy', nightIcon: '☁️', nightDesc: 'Cloudy night' },
-                { icon: '🌤️', desc: 'Light clouds', nightIcon: '🌌', nightDesc: 'Starry night' },
-                { icon: '🌦️', desc: 'Light rain', nightIcon: '🌧️', nightDesc: 'Light rain' }
-            ];
+            // Weather icons and descriptions
+            const weatherIcons = {
+                sunny: { day: '☀️', night: '🌙', desc: 'Sunny' },
+                partly_cloudy: { day: '⛅', night: '☁️', desc: 'Partly cloudy' },
+                clear: { day: '🌤️', night: '🌌', desc: 'Clear' },
+                cloudy: { day: '☁️', night: '☁️', desc: 'Cloudy' },
+                light_rain: { day: '🌦️', night: '🌧️', desc: 'Light rain' }
+            };
             
-            const currentWeather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+            const currentWeather = weatherIcons[weatherCondition];
             
             if (isNight) {
-                icon.textContent = currentWeather.nightIcon;
-                desc.textContent = currentWeather.nightDesc;
+                icon.textContent = currentWeather.night;
+                desc.textContent = currentWeather.desc + ' night';
             } else {
-                icon.textContent = currentWeather.icon;
+                icon.textContent = currentWeather.day;
                 desc.textContent = currentWeather.desc;
             }
             
-            // Update time
-            const timeString = now.toLocaleTimeString('en-US', { 
+            // Update time with Siargao timezone
+            const timeString = siargaoTime.toLocaleTimeString('en-US', { 
                 hour: '2-digit', 
                 minute: '2-digit',
-                hour12: true 
+                hour12: true,
+                timeZone: 'Asia/Manila'
             });
             time.textContent = timeString;
             
-            // Add time-based description
+            // Add activity suggestions based on time and weather
             if (isNight) {
                 desc.textContent += ' • Perfect for stargazing';
             } else if (hour >= 6 && hour <= 10) {
@@ -4704,9 +5070,182 @@
             }
         }
 
-        // Update weather every 30 seconds
+        // Update weather every 5 minutes for real-time feel
         updateWeather();
-        setInterval(updateWeather, 30000);
+        setInterval(updateWeather, 300000); // 5 minutes
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with animation classes
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Offline Detection
+        function initOfflineDetection() {
+            const offlineIndicator = document.getElementById('offlineIndicator');
+            const offlineText = document.getElementById('offlineText');
+
+            function updateOnlineStatus() {
+                if (navigator.onLine) {
+                    offlineIndicator.classList.remove('show');
+                    offlineText.textContent = 'You\'re online';
+                } else {
+                    offlineIndicator.classList.add('show');
+                    offlineText.textContent = 'You\'re offline';
+                }
+            }
+
+            // Listen for online/offline events
+            window.addEventListener('online', () => {
+                offlineIndicator.classList.add('online');
+                setTimeout(() => {
+                    offlineIndicator.classList.remove('show', 'online');
+                }, 3000);
+            });
+
+            window.addEventListener('offline', () => {
+                offlineIndicator.classList.remove('online');
+                offlineIndicator.classList.add('show');
+            });
+
+            // Initial check
+            updateOnlineStatus();
+        }
+
+        // Interactive Gallery
+        function initInteractiveGallery() {
+            const modal = document.getElementById('galleryModal');
+            const modalImg = document.getElementById('galleryImage');
+            const closeBtn = document.getElementById('galleryClose');
+            const prevBtn = document.getElementById('galleryPrev');
+            const nextBtn = document.getElementById('galleryNext');
+            
+            let currentImageIndex = 0;
+            let galleryImages = [];
+
+            // Get all gallery images
+            document.querySelectorAll('.gallery img').forEach((img, index) => {
+                galleryImages.push(img.src);
+                img.addEventListener('click', () => openGallery(index));
+            });
+
+            function openGallery(index) {
+                currentImageIndex = index;
+                modalImg.src = galleryImages[index];
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeGallery() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            function showPrev() {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                modalImg.src = galleryImages[currentImageIndex];
+            }
+
+            function showNext() {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                modalImg.src = galleryImages[currentImageIndex];
+            }
+
+            // Event listeners
+            closeBtn.addEventListener('click', closeGallery);
+            prevBtn.addEventListener('click', showPrev);
+            nextBtn.addEventListener('click', showNext);
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeGallery();
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (modal.classList.contains('active')) {
+                    if (e.key === 'Escape') closeGallery();
+                    if (e.key === 'ArrowLeft') showPrev();
+                    if (e.key === 'ArrowRight') showNext();
+                }
+            });
+        }
+
+        // Form Validation with Micro-interactions
+        function initFormValidation() {
+            const formInputs = document.querySelectorAll('.form-validation');
+            
+            formInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.checkValidity()) {
+                        this.classList.remove('error');
+                        this.classList.add('success');
+                    } else {
+                        this.classList.remove('success');
+                        this.classList.add('error');
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    this.classList.remove('error', 'success');
+                });
+            });
+        }
+
+        // Touch Gestures for Mobile
+        function initTouchGestures() {
+            let startX = 0;
+            let startY = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+
+            document.addEventListener('touchend', (e) => {
+                if (!startX || !startY) return;
+
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+
+                // Horizontal swipe detection
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                        // Swipe left - close mobile menu
+                        const mobileMenu = document.querySelector('.nav-menu');
+                        if (mobileMenu.classList.contains('active')) {
+                            closeMobileMenu();
+                        }
+                    }
+                }
+
+                startX = 0;
+                startY = 0;
+            });
+        }
+
+        // Initialize all enhancements
+        initScrollAnimations();
+        initOfflineDetection();
+        initInteractiveGallery();
+        initFormValidation();
+        initTouchGestures();
 
         // Enhanced Price Calculator
         function calculatePrice() {
@@ -4726,29 +5265,29 @@
             }
             
             // Base rates
-            const baseRate = 3300;
-            const extraBedRate = 300;
-            
-            // Calculate base price
-            const basePrice = nights * baseRate;
-            
+                const baseRate = 3300;
+                const extraBedRate = 300;
+                
+                // Calculate base price
+                const basePrice = nights * baseRate;
+                
             // Calculate extra bed cost (based on user selection)
             const extraBedPrice = extraBed * nights * extraBedRate;
-            
-            // Calculate subtotal
-            const subtotal = basePrice + extraBedPrice;
-            
-            // Calculate service fee (5%)
-            const serviceFee = Math.round(subtotal * 0.05);
-            
-            // Calculate total
-            const totalPrice = subtotal + serviceFee;
-            
-            // Update display
-            document.getElementById('basePrice').textContent = `₱${basePrice.toLocaleString()}`;
-            document.getElementById('extraBedPrice').textContent = `₱${extraBedPrice.toLocaleString()}`;
-            document.getElementById('serviceFee').textContent = `₱${serviceFee.toLocaleString()}`;
-            document.getElementById('totalPrice').textContent = `₱${totalPrice.toLocaleString()}`;
+                
+                // Calculate subtotal
+                const subtotal = basePrice + extraBedPrice;
+                
+                // Calculate service fee (5%)
+                const serviceFee = Math.round(subtotal * 0.05);
+                
+                // Calculate total
+                const totalPrice = subtotal + serviceFee;
+                
+                // Update display
+                document.getElementById('basePrice').textContent = `₱${basePrice.toLocaleString()}`;
+                document.getElementById('extraBedPrice').textContent = `₱${extraBedPrice.toLocaleString()}`;
+                document.getElementById('serviceFee').textContent = `₱${serviceFee.toLocaleString()}`;
+                document.getElementById('totalPrice').textContent = `₱${totalPrice.toLocaleString()}`;
         }
 
         // Initialize price calculator
@@ -4823,7 +5362,7 @@
             webP.onload = webP.onerror = function() {
                 if (webP.height === 2) {
                     document.documentElement.classList.add('webp');
-                } else {
+            } else {
                     document.documentElement.classList.add('no-webp');
                 }
             };
