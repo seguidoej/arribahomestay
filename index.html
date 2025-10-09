@@ -906,16 +906,16 @@
 
         .availability-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 40px;
-            max-width: 1200px;
+            max-width: 600px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
             z-index: 1;
         }
 
-        .quick-booking, .price-calculator {
+        .price-calculator {
             background: white;
             border-radius: 20px;
             padding: 30px;
@@ -926,24 +926,18 @@
             transition: all 0.3s ease;
         }
 
-        .quick-booking:hover, .price-calculator:hover {
+        .price-calculator:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .quick-booking h3, .price-calculator h3 {
+        .price-calculator h3 {
             font-size: 1.5rem;
             color: #2c3e50;
             margin-bottom: 20px;
             text-align: center;
         }
 
-        /* Quick Booking Styles */
-        .booking-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
 
         .availability-status {
             display: flex;
@@ -2523,9 +2517,10 @@
             .availability-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
+                max-width: 100%;
             }
 
-            .quick-booking, .price-calculator {
+            .price-calculator {
                 padding: 25px 20px;
             }
 
@@ -2891,7 +2886,7 @@
                 padding: 40px 15px;
             }
 
-            .quick-booking, .price-calculator {
+            .price-calculator {
                 padding: 20px 15px;
             }
 
@@ -3210,35 +3205,6 @@
             <p class="section-subtitle">Plan your perfect getaway with our interactive booking system</p>
             
             <div class="availability-grid">
-                <!-- Quick Booking Form -->
-                <div class="quick-booking">
-                    <h3>📅 Quick Booking</h3>
-                    <div class="booking-form">
-                        <div class="form-group">
-                            <label>Check-in Date</label>
-                            <input type="date" id="checkinDate" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Check-out Date</label>
-                            <input type="date" id="checkoutDate" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Number of Guests</label>
-                            <select id="guestCount" class="form-select" required>
-                                <option value="1">1 Guest</option>
-                                <option value="2" selected>2 Guests</option>
-                                <option value="3">3 Guests</option>
-                                <option value="4">4 Guests</option>
-                                <option value="5">5 Guests</option>
-                            </select>
-                        </div>
-                        <div class="availability-status" id="availabilityStatus">
-                            <div class="status-icon">✅</div>
-                            <div class="status-text">Available for your dates</div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Price Calculator -->
                 <div class="price-calculator">
                     <h3>💰 Price Calculator</h3>
@@ -3940,110 +3906,35 @@
 
         // Enhanced Price Calculator
         function calculatePrice() {
-            const checkinDate = document.getElementById('checkinDate').value;
-            const checkoutDate = document.getElementById('checkoutDate').value;
-            const guestCount = parseInt(document.getElementById('guestCount').value);
+            // Set default values for demonstration
+            const nights = 1; // Default to 1 night
+            const guestCount = 2; // Default to 2 guests
             
-            if (checkinDate && checkoutDate) {
-                const checkin = new Date(checkinDate);
-                const checkout = new Date(checkoutDate);
-                
-                // Validate dates
-                if (checkout <= checkin) {
-                    document.getElementById('totalPrice').textContent = 'Invalid dates';
-                    return;
-                }
-                
-                const nights = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
-                const baseRate = 3300;
-                const extraBedRate = 300;
-                
-                // Calculate base price
-                const basePrice = nights * baseRate;
-                
-                // Calculate extra bed cost (for guests 3+)
-                const extraBedPrice = guestCount > 2 ? (guestCount - 2) * nights * extraBedRate : 0;
-                
-                // Calculate subtotal
-                const subtotal = basePrice + extraBedPrice;
-                
-                // Calculate service fee (5%)
-                const serviceFee = Math.round(subtotal * 0.05);
-                
-                // Calculate total
-                const totalPrice = subtotal + serviceFee;
-                
-                // Update display
-                document.getElementById('basePrice').textContent = `₱${basePrice.toLocaleString()}`;
-                document.getElementById('extraBedPrice').textContent = `₱${extraBedPrice.toLocaleString()}`;
-                document.getElementById('serviceFee').textContent = `₱${serviceFee.toLocaleString()}`;
-                document.getElementById('totalPrice').textContent = `₱${totalPrice.toLocaleString()}`;
-                
-                // Update availability status
-                const statusElement = document.getElementById('availabilityStatus');
-                const statusIcon = statusElement.querySelector('.status-icon');
-                const statusText = statusElement.querySelector('.status-text');
-                
-                // Simulate availability check
-                const isAvailable = Math.random() > 0.2; // 80% chance of being available
-                
-                if (isAvailable) {
-                    statusIcon.textContent = '✅';
-                    statusText.textContent = `Available for ${nights} night${nights > 1 ? 's' : ''}`;
-                    statusElement.style.borderLeftColor = '#2ecc71';
-                } else {
-                    statusIcon.textContent = '❌';
-                    statusText.textContent = 'Sorry, not available for these dates';
-                    statusElement.style.borderLeftColor = '#e74c3c';
-                }
-                
-                // Enable/disable book button
-                const bookBtn = document.getElementById('bookNowBtn');
-                if (isAvailable) {
-                    bookBtn.disabled = false;
-                    bookBtn.style.opacity = '1';
-                    bookBtn.style.cursor = 'pointer';
-                } else {
-                    bookBtn.disabled = true;
-                    bookBtn.style.opacity = '0.5';
-                    bookBtn.style.cursor = 'not-allowed';
-                }
-            } else {
-                // Reset values if dates are not selected
-                document.getElementById('basePrice').textContent = '₱0';
-                document.getElementById('extraBedPrice').textContent = '₱0';
-                document.getElementById('serviceFee').textContent = '₱0';
-                document.getElementById('totalPrice').textContent = '₱0';
-                
-                const statusElement = document.getElementById('availabilityStatus');
-                const statusIcon = statusElement.querySelector('.status-icon');
-                const statusText = statusElement.querySelector('.status-text');
-                statusIcon.textContent = '📅';
-                statusText.textContent = 'Select dates to check availability';
-                statusElement.style.borderLeftColor = '#3498db';
-            }
+            // Base rates
+            const baseRate = 3300;
+            const extraBedRate = 300;
+            
+            // Calculate base price
+            const basePrice = nights * baseRate;
+            
+            // Calculate extra bed cost (for guests 3+)
+            const extraBedPrice = guestCount > 2 ? (guestCount - 2) * nights * extraBedRate : 0;
+            
+            // Calculate subtotal
+            const subtotal = basePrice + extraBedPrice;
+            
+            // Calculate service fee (5%)
+            const serviceFee = Math.round(subtotal * 0.05);
+            
+            // Calculate total
+            const totalPrice = subtotal + serviceFee;
+            
+            // Update display
+            document.getElementById('basePrice').textContent = `₱${basePrice.toLocaleString()}`;
+            document.getElementById('extraBedPrice').textContent = `₱${extraBedPrice.toLocaleString()}`;
+            document.getElementById('serviceFee').textContent = `₱${serviceFee.toLocaleString()}`;
+            document.getElementById('totalPrice').textContent = `₱${totalPrice.toLocaleString()}`;
         }
-
-        // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('checkinDate').min = today;
-        document.getElementById('checkoutDate').min = today;
-
-        // Add event listeners for price calculator
-        document.getElementById('checkinDate').addEventListener('change', function() {
-            const checkinDate = new Date(this.value);
-            const checkoutDate = new Date(checkoutDate.value);
-            
-            // Set minimum checkout date to day after checkin
-            const minCheckout = new Date(checkinDate);
-            minCheckout.setDate(minCheckout.getDate() + 1);
-            document.getElementById('checkoutDate').min = minCheckout.toISOString().split('T')[0];
-            
-            calculatePrice();
-        });
-        
-        document.getElementById('checkoutDate').addEventListener('change', calculatePrice);
-        document.getElementById('guestCount').addEventListener('change', calculatePrice);
 
         // Initialize price calculator
         calculatePrice();
