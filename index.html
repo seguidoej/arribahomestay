@@ -32,6 +32,14 @@
             justify-content: center;
             z-index: 9999;
             transition: opacity 0.5s ease;
+            animation: fadeOut 3s ease-in-out 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
         }
 
         .loading-overlay.hidden {
@@ -3286,6 +3294,11 @@
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) {
+                console.log('Particles container not found');
+                return;
+            }
+            
             const particleCount = 50;
 
             for (let i = 0; i < particleCount; i++) {
@@ -3310,31 +3323,33 @@
             }
         }
 
-        // Initialize particles when page loads
-        window.addEventListener('load', createParticles);
+        // Initialize particles when page loads (with error handling)
+        window.addEventListener('load', () => {
+            try {
+                createParticles();
+            } catch (error) {
+                console.log('Particles initialization skipped:', error);
+            }
+        });
 
-        // Loading Animation
+        // Loading Animation - Simple and reliable
         function hideLoadingScreen() {
             const loadingOverlay = document.getElementById('loadingOverlay');
             if (loadingOverlay) {
-                loadingOverlay.classList.add('hidden');
+                loadingOverlay.style.opacity = '0';
                 setTimeout(() => {
                     loadingOverlay.style.display = 'none';
                 }, 500);
             }
         }
 
-        // Hide loading screen when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                setTimeout(hideLoadingScreen, 1000);
-            });
-        } else {
-            setTimeout(hideLoadingScreen, 1000);
-        }
+        // Hide loading screen immediately when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(hideLoadingScreen, 500);
+        });
 
-        // Fallback: hide after 3 seconds regardless
-        setTimeout(hideLoadingScreen, 3000);
+        // Fallback: hide after 2 seconds regardless
+        setTimeout(hideLoadingScreen, 2000);
 
         // Animated Counters
         function animateCounters() {
