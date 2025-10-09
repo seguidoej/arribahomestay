@@ -3263,11 +3263,32 @@
                         if (targetSection) {
                             console.log('Scrolling to:', targetId, targetSection);
                             
-                            // Simple smooth scroll using scrollIntoView
-                            targetSection.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
+                            // Custom smooth scroll with proper offset
+                            const navbarHeight = 70;
+                            const targetPosition = targetSection.offsetTop - navbarHeight;
+                            const startPosition = window.pageYOffset;
+                            const distance = targetPosition - startPosition;
+                            const duration = 1000; // 1 second
+                            let start = null;
+                            
+                            function easeInOutCubic(t) {
+                                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                            }
+                            
+                            function step(timestamp) {
+                                if (!start) start = timestamp;
+                                const progress = timestamp - start;
+                                const percentage = Math.min(progress / duration, 1);
+                                const ease = easeInOutCubic(percentage);
+                                
+                                window.scrollTo(0, startPosition + distance * ease);
+                                
+                                if (progress < duration) {
+                                    requestAnimationFrame(step);
+                                }
+                            }
+                            
+                            requestAnimationFrame(step);
                         }
                     }
                     // For non-anchor links (like external links), let the browser handle navigation normally
